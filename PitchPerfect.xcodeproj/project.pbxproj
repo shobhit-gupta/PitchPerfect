@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		EE894A481E5C98A10066A4FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A471E5C98A10066A4FE /* AppDelegate.swift */; };
-		EE894A4A1E5C98A10066A4FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A491E5C98A10066A4FE /* ViewController.swift */; };
 		EE894A4D1E5C98A10066A4FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE894A4B1E5C98A10066A4FE /* Main.storyboard */; };
 		EE894A4F1E5C98A10066A4FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE894A4E1E5C98A10066A4FE /* Assets.xcassets */; };
 		EE894A521E5C98A10066A4FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE894A501E5C98A10066A4FE /* LaunchScreen.storyboard */; };
 		EE894A5D1E5C98A10066A4FE /* PitchPerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A5C1E5C98A10066A4FE /* PitchPerfectTests.swift */; };
 		EE894A681E5C98A10066A4FE /* PitchPerfectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A671E5C98A10066A4FE /* PitchPerfectUITests.swift */; };
+		EED3169B1E7FA56D00014B2D /* OverlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169A1E7FA56D00014B2D /* OverlayButton.swift */; };
+		EED3169D1E80110000014B2D /* ArtKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169C1E80110000014B2D /* ArtKit.swift */; };
+		EED3169F1E801B6A00014B2D /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169E1E801B6A00014B2D /* RecordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +38,6 @@
 /* Begin PBXFileReference section */
 		EE894A441E5C98A10066A4FE /* PitchPerfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PitchPerfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE894A471E5C98A10066A4FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EE894A491E5C98A10066A4FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EE894A4C1E5C98A10066A4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE894A4E1E5C98A10066A4FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE894A511E5C98A10066A4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +48,9 @@
 		EE894A631E5C98A10066A4FE /* PitchPerfectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PitchPerfectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE894A671E5C98A10066A4FE /* PitchPerfectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchPerfectUITests.swift; sourceTree = "<group>"; };
 		EE894A691E5C98A10066A4FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EED3169A1E7FA56D00014B2D /* OverlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverlayButton.swift; path = View/OverlayButton.swift; sourceTree = "<group>"; };
+		EED3169C1E80110000014B2D /* ArtKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtKit.swift; path = View/ArtKit.swift; sourceTree = "<group>"; };
+		EED3169E1E801B6A00014B2D /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordViewController.swift; path = Controller/RecordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +101,9 @@
 		EE894A461E5C98A10066A4FE /* PitchPerfect */ = {
 			isa = PBXGroup;
 			children = (
+				EED316991E7FA50D00014B2D /* View */,
+				EED316A01E801B7400014B2D /* Controller */,
 				EE894A471E5C98A10066A4FE /* AppDelegate.swift */,
-				EE894A491E5C98A10066A4FE /* ViewController.swift */,
 				EE894A4B1E5C98A10066A4FE /* Main.storyboard */,
 				EE894A4E1E5C98A10066A4FE /* Assets.xcassets */,
 				EE894A501E5C98A10066A4FE /* LaunchScreen.storyboard */,
@@ -123,6 +128,23 @@
 				EE894A691E5C98A10066A4FE /* Info.plist */,
 			);
 			path = PitchPerfectUITests;
+			sourceTree = "<group>";
+		};
+		EED316991E7FA50D00014B2D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EED3169C1E80110000014B2D /* ArtKit.swift */,
+				EED3169A1E7FA56D00014B2D /* OverlayButton.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		EED316A01E801B7400014B2D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EED3169E1E801B6A00014B2D /* RecordViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +284,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE894A4A1E5C98A10066A4FE /* ViewController.swift in Sources */,
+				EED3169D1E80110000014B2D /* ArtKit.swift in Sources */,
+				EED3169B1E7FA56D00014B2D /* OverlayButton.swift in Sources */,
 				EE894A481E5C98A10066A4FE /* AppDelegate.swift in Sources */,
+				EED3169F1E801B6A00014B2D /* RecordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +538,7 @@
 				EE894A6E1E5C98A10066A4FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EE894A6F1E5C98A10066A4FE /* Build configuration list for PBXNativeTarget "PitchPerfectTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +547,7 @@
 				EE894A711E5C98A10066A4FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EE894A721E5C98A10066A4FE /* Build configuration list for PBXNativeTarget "PitchPerfectUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +556,7 @@
 				EE894A741E5C98A10066A4FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
