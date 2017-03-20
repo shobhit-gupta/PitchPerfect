@@ -104,9 +104,7 @@
 				EED316991E7FA50D00014B2D /* View */,
 				EED316A01E801B7400014B2D /* Controller */,
 				EE894A471E5C98A10066A4FE /* AppDelegate.swift */,
-				EE894A4B1E5C98A10066A4FE /* Main.storyboard */,
-				EE894A4E1E5C98A10066A4FE /* Assets.xcassets */,
-				EE894A501E5C98A10066A4FE /* LaunchScreen.storyboard */,
+				EED316A11E80209A00014B2D /* Assets */,
 				EE894A531E5C98A10066A4FE /* Info.plist */,
 			);
 			path = PitchPerfect;
@@ -145,6 +143,16 @@
 				EED3169E1E801B6A00014B2D /* RecordViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		EED316A11E80209A00014B2D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EE894A4B1E5C98A10066A4FE /* Main.storyboard */,
+				EE894A4E1E5C98A10066A4FE /* Assets.xcassets */,
+				EE894A501E5C98A10066A4FE /* LaunchScreen.storyboard */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
