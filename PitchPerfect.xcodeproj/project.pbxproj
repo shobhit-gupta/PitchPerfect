@@ -10,13 +10,14 @@
 		103CCA9DF42CB75F6B8A3D05 /* Pods_PitchPerfectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C940F21B499466CFE54517 /* Pods_PitchPerfectUITests.framework */; };
 		3E68977E657D3567197D1547 /* Pods_PitchPerfectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D573F0CFAC53848B246F68 /* Pods_PitchPerfectTests.framework */; };
 		E0A4F2C968CD100234516FAF /* Pods_PitchPerfect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F9EAF4ABC17C8C307F3DFC /* Pods_PitchPerfect.framework */; };
+		EE158BAE1E80233C00228BA2 /* AudioEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE158BAD1E80233C00228BA2 /* AudioEffectsViewController.swift */; };
 		EE894A481E5C98A10066A4FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A471E5C98A10066A4FE /* AppDelegate.swift */; };
 		EE894A4D1E5C98A10066A4FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE894A4B1E5C98A10066A4FE /* Main.storyboard */; };
 		EE894A4F1E5C98A10066A4FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE894A4E1E5C98A10066A4FE /* Assets.xcassets */; };
 		EE894A521E5C98A10066A4FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE894A501E5C98A10066A4FE /* LaunchScreen.storyboard */; };
 		EE894A5D1E5C98A10066A4FE /* PitchPerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A5C1E5C98A10066A4FE /* PitchPerfectTests.swift */; };
 		EE894A681E5C98A10066A4FE /* PitchPerfectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A671E5C98A10066A4FE /* PitchPerfectUITests.swift */; };
-		EED3169B1E7FA56D00014B2D /* OverlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169A1E7FA56D00014B2D /* OverlayButton.swift */; };
+		EED3169B1E7FA56D00014B2D /* ArtKitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169A1E7FA56D00014B2D /* ArtKitButton.swift */; };
 		EED3169D1E80110000014B2D /* ArtKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169C1E80110000014B2D /* ArtKit.swift */; };
 		EED3169F1E801B6A00014B2D /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169E1E801B6A00014B2D /* RecordViewController.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		BB13708822829A37B169BDE7 /* Pods-PitchPerfectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PitchPerfectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PitchPerfectTests/Pods-PitchPerfectTests.release.xcconfig"; sourceTree = "<group>"; };
 		E8E29BD8A687525E35BE0E33 /* Pods-PitchPerfectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PitchPerfectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PitchPerfectTests/Pods-PitchPerfectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E9D573F0CFAC53848B246F68 /* Pods_PitchPerfectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PitchPerfectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE158BAD1E80233C00228BA2 /* AudioEffectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioEffectsViewController.swift; path = Controller/AudioEffectsViewController.swift; sourceTree = "<group>"; };
 		EE894A441E5C98A10066A4FE /* PitchPerfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PitchPerfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE894A471E5C98A10066A4FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE894A4C1E5C98A10066A4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,7 +62,7 @@
 		EE894A631E5C98A10066A4FE /* PitchPerfectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PitchPerfectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE894A671E5C98A10066A4FE /* PitchPerfectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchPerfectUITests.swift; sourceTree = "<group>"; };
 		EE894A691E5C98A10066A4FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EED3169A1E7FA56D00014B2D /* OverlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverlayButton.swift; path = View/OverlayButton.swift; sourceTree = "<group>"; };
+		EED3169A1E7FA56D00014B2D /* ArtKitButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtKitButton.swift; path = View/ArtKitButton.swift; sourceTree = "<group>"; };
 		EED3169C1E80110000014B2D /* ArtKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtKit.swift; path = View/ArtKit.swift; sourceTree = "<group>"; };
 		EED3169E1E801B6A00014B2D /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordViewController.swift; path = Controller/RecordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				EED3169C1E80110000014B2D /* ArtKit.swift */,
-				EED3169A1E7FA56D00014B2D /* OverlayButton.swift */,
+				EED3169A1E7FA56D00014B2D /* ArtKitButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				EED3169E1E801B6A00014B2D /* RecordViewController.swift */,
+				EE158BAD1E80233C00228BA2 /* AudioEffectsViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -480,8 +483,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EED3169D1E80110000014B2D /* ArtKit.swift in Sources */,
-				EED3169B1E7FA56D00014B2D /* OverlayButton.swift in Sources */,
+				EED3169B1E7FA56D00014B2D /* ArtKitButton.swift in Sources */,
 				EE894A481E5C98A10066A4FE /* AppDelegate.swift in Sources */,
+				EE158BAE1E80233C00228BA2 /* AudioEffectsViewController.swift in Sources */,
 				EED3169F1E801B6A00014B2D /* RecordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
