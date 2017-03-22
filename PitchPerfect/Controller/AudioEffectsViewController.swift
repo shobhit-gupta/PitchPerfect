@@ -9,14 +9,17 @@
 import UIKit
 import HCRotaryWheel
 
-class AudioEffectsViewController: UIViewController {
 
-    @IBOutlet weak var wheel: HCRotaryWheel!
+class AudioEffectsViewController: CustomTraitCollectionViewController {
+
+    @IBOutlet weak var wheel: RotaryWheel!
     @IBOutlet weak var closeButton: ArtKitButton!
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +29,20 @@ class AudioEffectsViewController: UIViewController {
         setupWheel()
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 
     @IBAction func close(_ sender: ArtKitButton) {
+        print("View size: \(view.frame.size)")
         dismiss(animated: true, completion: nil)
     }
     
+    
+    override func viewDidLayoutSubviews() {
+        wheel.redraw()
+    }
 }
 
 
@@ -49,9 +61,7 @@ extension AudioEffectsViewController: RotaryProtocol {
     
     
     func wheelDidChangeValue(_ currentSector: Int32) {
-        if wheel.timerExists() {
-            wheel.stopTimer()
-        }
+        
     }
     
 }
