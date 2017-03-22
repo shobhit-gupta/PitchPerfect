@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="ipad12_9" orientation="landscape">
-        <adaptation id="splitview1_2"/>
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -21,14 +21,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="678" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6uf-Cu-Cyq" userLabel="Record Stack View">
-                                <rect key="frame" x="295.5" y="422.5" width="87" height="179"/>
+                                <rect key="frame" x="159" y="275" width="57" height="117"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAv-2E-GYe" userLabel="Microphone" customClass="ArtKitButton" customModule="PitchPerfect">
-                                        <rect key="frame" x="0.0" y="0.0" width="87" height="179"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="57" height="117"/>
                                         <connections>
                                             <action selector="pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y7q-h3-18x"/>
                                         </connections>
@@ -64,17 +64,17 @@
                         <viewControllerLayoutGuide type="bottom" id="bqF-Tl-gzr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ehL-tu-WGg">
-                        <rect key="frame" x="0.0" y="0.0" width="678" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RcP-lg-gAg" userLabel="Main Stack View">
-                                <rect key="frame" x="20" y="28" width="638" height="996"/>
+                                <rect key="frame" x="16" y="28" width="343" height="639"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="F43-Ch-L42" userLabel="Wheel Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="638" height="996"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="639"/>
                                         <subviews>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1B-49-pth" customClass="RotaryWheel" customModule="PitchPerfect">
-                                                <rect key="frame" x="0.0" y="179" width="638" height="638"/>
+                                                <rect key="frame" x="0.0" y="148" width="343" height="343"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="j1B-49-pth" secondAttribute="height" multiplier="1:1" id="uv0-bn-gte"/>
                                                 </constraints>
@@ -95,11 +95,53 @@
                                 <variation key="heightClass=compact" alignment="center"/>
                                 <variation key="heightClass=regular-widthClass=compact" alignment="fill"/>
                             </stackView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2r6-vN-ZEb" customClass="CircularSlider" customModule="HGCircularSlider">
+                                <rect key="frame" x="127.5" y="287.5" width="120" height="120"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2r6-vN-ZEb" secondAttribute="height" multiplier="1:1" id="GGb-67-t6j"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="diskColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="thumbLineWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="thumbRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="trackFillColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endThumbTintColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endThumbStrokeHighlightedColor">
+                                        <color key="value" red="0.9137254901960784" green="0.10980392156862745" blue="0.4823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endThumbStrokeColor">
+                                        <color key="value" red="0.45882352941176469" green="0.050980392156862744" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                        <real key="value" value="13"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70c-gM-PBt" userLabel="Page Actions Stack View">
-                                <rect key="frame" x="617" y="28" width="41" height="41"/>
+                                <rect key="frame" x="332.5" y="28" width="26.5" height="26.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixZ-Tn-rZm" userLabel="Close" customClass="ArtKitButton" customModule="PitchPerfect">
-                                        <rect key="frame" x="0.0" y="0.0" width="41" height="41"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="26.5" height="26.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ixZ-Tn-rZm" secondAttribute="height" multiplier="1:1" id="Ny1-bU-Tyg"/>
                                         </constraints>
@@ -115,12 +157,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2r6-vN-ZEb" firstAttribute="centerX" secondItem="j1B-49-pth" secondAttribute="centerX" id="0Zs-Do-J1v"/>
                             <constraint firstItem="RcP-lg-gAg" firstAttribute="bottom" secondItem="bqF-Tl-gzr" secondAttribute="top" id="J1B-XH-8hp"/>
                             <constraint firstItem="RcP-lg-gAg" firstAttribute="top" secondItem="Agg-ZV-Dwr" secondAttribute="bottom" constant="8" symbolic="YES" id="Pyw-Ph-wMn"/>
                             <constraint firstItem="RcP-lg-gAg" firstAttribute="leading" secondItem="ehL-tu-WGg" secondAttribute="leadingMargin" id="Qji-9q-sLz"/>
                             <constraint firstItem="70c-gM-PBt" firstAttribute="trailing" secondItem="RcP-lg-gAg" secondAttribute="trailing" id="TPN-BS-H7Z"/>
+                            <constraint firstItem="2r6-vN-ZEb" firstAttribute="centerY" secondItem="j1B-49-pth" secondAttribute="centerY" id="UBq-B5-fZT"/>
                             <constraint firstItem="ixZ-Tn-rZm" firstAttribute="height" secondItem="ehL-tu-WGg" secondAttribute="height" multiplier="0.04" id="ZVc-4z-j2P"/>
                             <constraint firstItem="70c-gM-PBt" firstAttribute="top" secondItem="RcP-lg-gAg" secondAttribute="top" id="ccZ-Ip-4tH"/>
+                            <constraint firstItem="2r6-vN-ZEb" firstAttribute="width" secondItem="j1B-49-pth" secondAttribute="width" multiplier="0.35" id="l4P-t4-Nht"/>
                             <constraint firstItem="RcP-lg-gAg" firstAttribute="trailing" secondItem="ehL-tu-WGg" secondAttribute="trailingMargin" id="soO-MZ-uBY"/>
                         </constraints>
                     </view>
