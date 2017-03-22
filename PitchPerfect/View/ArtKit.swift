@@ -33,6 +33,8 @@ public class ArtKit : NSObject {
         static let grey6: UIColor = UIColor(red: 0.424, green: 0.424, blue: 0.424, alpha: 1.000)
         static let grey7: UIColor = UIColor(red: 0.314, green: 0.314, blue: 0.314, alpha: 1.000)
         static let grey8: UIColor = UIColor(red: 0.180, green: 0.180, blue: 0.180, alpha: 1.000)
+        static let shadowOfPrimaryColor: UIColor = ArtKit.primaryColor.shadow(withLevel: 0.3)
+        static let highlightOfPrimaryColor: UIColor = ArtKit.primaryColor.highlight(withLevel: 0.1)
         static var imageOfLow: UIImage?
         static var lowTargets: [AnyObject]?
         static var imageOfSlow: UIImage?
@@ -64,6 +66,8 @@ public class ArtKit : NSObject {
     public dynamic class var grey6: UIColor { return Cache.grey6 }
     public dynamic class var grey7: UIColor { return Cache.grey7 }
     public dynamic class var grey8: UIColor { return Cache.grey8 }
+    public dynamic class var shadowOfPrimaryColor: UIColor { return Cache.shadowOfPrimaryColor }
+    public dynamic class var highlightOfPrimaryColor: UIColor { return Cache.highlightOfPrimaryColor }
 
     //// Drawing Methods
 

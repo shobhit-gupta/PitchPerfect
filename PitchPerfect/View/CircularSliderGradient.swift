@@ -16,9 +16,7 @@ class CircularSliderGradient: UIView {
     @IBInspectable var sliderThumbLineWidth: CGFloat = 4.0
     @IBInspectable var sliderThumbRadius: CGFloat = 13.0
     
-    /**
-     * The radius of circle
-     */
+    
     var radius: CGFloat {
         get {
             // the minimum between the height/2 and the width/2
@@ -28,6 +26,7 @@ class CircularSliderGradient: UIView {
             return radius
         }
     }
+    
     
     override func draw(_ rect: CGRect) {
         let sliderRadius = radius

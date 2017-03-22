@@ -8,12 +8,14 @@
 
 import UIKit
 import HCRotaryWheel
+import HGCircularSlider
 
 
 class AudioEffectsViewController: CustomTraitCollectionViewController {
 
     @IBOutlet weak var wheel: RotaryWheel!
     @IBOutlet weak var closeButton: ArtKitButton!
+    @IBOutlet weak var circularSlider: CircularSlider!
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -27,6 +29,7 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
         closeButton.backgroundColor = ArtKit.primaryColor
         view.backgroundColor = ArtKit.primaryColor
         setupWheel()
+        setupCircularSlider()
     }
     
     
@@ -35,18 +38,29 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
     }
 
     @IBAction func close(_ sender: ArtKitButton) {
-        print("View size: \(view.frame.size)")
         dismiss(animated: true, completion: nil)
     }
     
     
     override func viewDidLayoutSubviews() {
         wheel.redraw()
+        circularSlider.setNeedsDisplay()
     }
 }
 
 
 extension AudioEffectsViewController: RotaryProtocol {
+    
+    
+    
+    func wheelDidChangeValue(_ currentSector: Int32) {
+        
+    }
+    
+}
+
+
+extension AudioEffectsViewController {
     
     func setupWheel() {
         wheel.background = ArtKit.primaryColor
@@ -60,8 +74,10 @@ extension AudioEffectsViewController: RotaryProtocol {
     }
     
     
-    func wheelDidChangeValue(_ currentSector: Int32) {
-        
+    func setupCircularSlider() {
+        circularSlider.trackColor = ArtKit.shadowOfPrimaryColor
+        circularSlider.trackFillColor = ArtKit.highlightOfPrimaryColor
+        circularSlider.endThumbStrokeColor = ArtKit.shadowOfPrimaryColor.withAlphaComponent(0.2)
+        circularSlider.endThumbStrokeHighlightedColor = ArtKit.highlightOfPrimaryColor.withAlphaComponent(0.2)
     }
-    
 }
