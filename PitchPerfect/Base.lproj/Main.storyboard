@@ -95,6 +95,21 @@
                                 <variation key="heightClass=compact" alignment="center"/>
                                 <variation key="heightClass=regular-widthClass=compact" alignment="fill"/>
                             </stackView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="br6-KH-4UA" customClass="CircularSliderGradient" customModule="PitchPerfect">
+                                <rect key="frame" x="127.5" y="287.5" width="120" height="120"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="sliderLineWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="sliderThumbLineWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="sliderThumbRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2r6-vN-ZEb" customClass="CircularSlider" customModule="HGCircularSlider">
                                 <rect key="frame" x="127.5" y="287.5" width="120" height="120"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -158,7 +173,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2r6-vN-ZEb" firstAttribute="centerX" secondItem="j1B-49-pth" secondAttribute="centerX" id="0Zs-Do-J1v"/>
+                            <constraint firstItem="br6-KH-4UA" firstAttribute="top" secondItem="2r6-vN-ZEb" secondAttribute="top" id="CXw-ns-f3T"/>
+                            <constraint firstItem="br6-KH-4UA" firstAttribute="bottom" secondItem="2r6-vN-ZEb" secondAttribute="bottom" id="Ch9-vh-ILc"/>
                             <constraint firstItem="RcP-lg-gAg" firstAttribute="bottom" secondItem="bqF-Tl-gzr" secondAttribute="top" id="J1B-XH-8hp"/>
+                            <constraint firstItem="br6-KH-4UA" firstAttribute="trailing" secondItem="2r6-vN-ZEb" secondAttribute="trailing" id="PBy-T4-sjL"/>
                             <constraint firstItem="RcP-lg-gAg" firstAttribute="top" secondItem="Agg-ZV-Dwr" secondAttribute="bottom" constant="8" symbolic="YES" id="Pyw-Ph-wMn"/>
                             <constraint firstItem="RcP-lg-gAg" firstAttribute="leading" secondItem="ehL-tu-WGg" secondAttribute="leadingMargin" id="Qji-9q-sLz"/>
                             <constraint firstItem="70c-gM-PBt" firstAttribute="trailing" secondItem="RcP-lg-gAg" secondAttribute="trailing" id="TPN-BS-H7Z"/>
@@ -166,6 +184,7 @@
                             <constraint firstItem="ixZ-Tn-rZm" firstAttribute="height" secondItem="ehL-tu-WGg" secondAttribute="height" multiplier="0.04" id="ZVc-4z-j2P"/>
                             <constraint firstItem="70c-gM-PBt" firstAttribute="top" secondItem="RcP-lg-gAg" secondAttribute="top" id="ccZ-Ip-4tH"/>
                             <constraint firstItem="2r6-vN-ZEb" firstAttribute="width" secondItem="j1B-49-pth" secondAttribute="width" multiplier="0.35" id="l4P-t4-Nht"/>
+                            <constraint firstItem="br6-KH-4UA" firstAttribute="leading" secondItem="2r6-vN-ZEb" secondAttribute="leading" id="pWq-WB-t1o"/>
                             <constraint firstItem="RcP-lg-gAg" firstAttribute="trailing" secondItem="ehL-tu-WGg" secondAttribute="trailingMargin" id="soO-MZ-uBY"/>
                         </constraints>
                     </view>
