@@ -44,7 +44,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Fjw-r2-In5" userLabel="Waveform Stack View">
                                         <rect key="frame" x="0.0" y="84" width="288" height="51"/>
                                         <subviews>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9af-9p-tWc" customClass="SwiftSiriWaveformView" customModule="SwiftSiriWaveformView">
+                                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9af-9p-tWc" customClass="AnimatedWaveform" customModule="PitchPerfect">
                                                 <rect key="frame" x="0.0" y="0.0" width="288" height="51"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </view>

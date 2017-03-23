@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import SwiftSiriWaveformView
+//import SwiftSiriWaveformView
 
 class RecordViewController: UIViewController {
     
     @IBOutlet weak var microphoneButton: ArtKitButton!
-    @IBOutlet weak var waveform: SwiftSiriWaveformView!
+    @IBOutlet weak var waveform: AnimatedWaveform!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,16 @@ class RecordViewController: UIViewController {
     @IBAction func pressed(_ sender: ArtKitButton) {
         sender.currentState = sender.currentState == .normal ? .overlay : .normal
         if sender.currentState == .normal {
+            waveform.end()
             performSegue(withIdentifier: "showAudioEffects", sender: self)
+        } else {
+            waveform.begin()
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        setupWaveform()
+        waveform.setNeedsDisplay()
     }
 
 }
@@ -39,6 +47,7 @@ extension RecordViewController {
     func setupUI() {
         setupView()
         setupMicrophoneButton()
+        setupWaveform()
     }
     
     
@@ -54,7 +63,9 @@ extension RecordViewController {
     
     
     func setupWaveform() {
-        
+        waveform.frequency = view.frame.width / 100.0
+        waveform.waveColor = ArtKit.shadowOfSecondaryColor
+        waveform.shouldHideWhenNotAnimating = true
     }
     
 }
