@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import SwiftSiriWaveformView
 
 class RecordViewController: UIViewController {
     
     @IBOutlet weak var microphoneButton: ArtKitButton!
+    @IBOutlet weak var waveform: SwiftSiriWaveformView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +50,11 @@ extension RecordViewController {
     func setupMicrophoneButton() {
         microphoneButton.kind = .microphone
         microphoneButton.backgroundColor = ArtKit.primaryColor
+    }
+    
+    
+    func setupWaveform() {
+        
     }
     
 }
