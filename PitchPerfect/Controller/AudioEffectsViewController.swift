@@ -31,7 +31,9 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
 
     
     @IBAction func close(_ sender: ArtKitButton) {
-        dismiss(animated: true, completion: nil)
+        if let navigationController = navigationController {
+            navigationController.popViewController(animated: true)
+        }
     }
     
 }
