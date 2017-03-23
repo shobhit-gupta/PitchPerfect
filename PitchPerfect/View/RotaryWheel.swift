@@ -7,7 +7,6 @@
 //
 //  HCRotaryWheel for PitchPerfect project
 
-
 import Foundation
 import HCRotaryWheel
 

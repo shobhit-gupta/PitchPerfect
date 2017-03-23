@@ -15,52 +15,63 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
 
     @IBOutlet weak var wheel: RotaryWheel!
     @IBOutlet weak var closeButton: ArtKitButton!
+    @IBOutlet weak var circularSliderGradient: CircularSliderGradient!
     @IBOutlet weak var circularSlider: CircularSlider!
-    
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        closeButton.kind = .close
-        closeButton.backgroundColor = ArtKit.primaryColor
-        view.backgroundColor = ArtKit.primaryColor
-        setupWheel()
-        setupCircularSlider()
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        setupUI()
     }
 
-    @IBAction func close(_ sender: ArtKitButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     
     override func viewDidLayoutSubviews() {
         wheel.redraw()
         circularSlider.setNeedsDisplay()
     }
+
+    
+    @IBAction func close(_ sender: ArtKitButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 
 extension AudioEffectsViewController: RotaryProtocol {
     
-    
-    
     func wheelDidChangeValue(_ currentSector: Int32) {
-        
+        // TODO: Apply audio effects
     }
     
 }
 
 
 extension AudioEffectsViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    
+    func setupUI() {
+        setupView()
+        setupCloseButton()
+        setupWheel()
+        setupCircularSlider()
+        setupCircularSliderGradient()
+    }
+    
+    
+    func setupView() {
+        view.backgroundColor = ArtKit.primaryColor
+    }
+    
+    
+    func setupCloseButton() {
+        closeButton.kind = .close
+        closeButton.backgroundColor = ArtKit.primaryColor
+    }
+    
     
     func setupWheel() {
         wheel.background = ArtKit.primaryColor
@@ -75,9 +86,26 @@ extension AudioEffectsViewController {
     
     
     func setupCircularSlider() {
+        // Disk
+        circularSlider.diskColor = UIColor.clear
+        circularSlider.diskFillColor = UIColor.clear
+        
+        // Track
         circularSlider.trackColor = ArtKit.shadowOfPrimaryColor
         circularSlider.trackFillColor = ArtKit.highlightOfPrimaryColor
-        circularSlider.endThumbStrokeColor = ArtKit.shadowOfPrimaryColor.withAlphaComponent(0.2)
-        circularSlider.endThumbStrokeHighlightedColor = ArtKit.highlightOfPrimaryColor.withAlphaComponent(0.2)
+        circularSlider.lineWidth = 5.0
+        
+        // Thumb
+        circularSlider.thumbLineWidth = 2.0
+        circularSlider.thumbRadius = 2.0
+        circularSlider.endThumbTintColor = ArtKit.secondaryColor
+        circularSlider.endThumbStrokeColor = ArtKit.secondaryColor
+        circularSlider.endThumbStrokeHighlightedColor = ArtKit.secondaryColor
     }
+    
+    
+    func setupCircularSliderGradient() {
+        circularSliderGradient.sync(with: circularSlider)
+    }
+    
 }

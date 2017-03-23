@@ -10,18 +10,11 @@ import UIKit
 
 class RecordViewController: UIViewController {
     
-    @IBOutlet weak var microphoneView: ArtKitButton!
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+    @IBOutlet weak var microphoneButton: ArtKitButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = ArtKit.primaryColor
-        microphoneView.kind = .microphone
-        microphoneView.backgroundColor = ArtKit.primaryColor
+        setupUI()
     }
     
     
@@ -32,4 +25,29 @@ class RecordViewController: UIViewController {
         }
     }
 
+}
+
+extension RecordViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    
+    func setupUI() {
+        setupView()
+        setupMicrophoneButton()
+    }
+    
+    
+    func setupView() {
+        view.backgroundColor = ArtKit.primaryColor
+    }
+    
+    
+    func setupMicrophoneButton() {
+        microphoneButton.kind = .microphone
+        microphoneButton.backgroundColor = ArtKit.primaryColor
+    }
+    
 }

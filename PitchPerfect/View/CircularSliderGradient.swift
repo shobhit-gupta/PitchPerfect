@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HGCircularSlider
 
 @IBDesignable
 class CircularSliderGradient: UIView {
@@ -36,6 +37,17 @@ class CircularSliderGradient: UIView {
                                   height: sliderRadius * 2)
         ArtKit.drawCircularSliderGradient(frame: gradientRect, opacity: opacity)
     }
+
+}
+
+
+extension CircularSliderGradient {
     
+    func sync(with circularSlider: CircularSlider) {
+        sliderLineWidth = circularSlider.lineWidth
+        sliderThumbLineWidth = circularSlider.thumbLineWidth
+        sliderThumbRadius = circularSlider.thumbRadius
+        setNeedsDisplay()
+    }
 
 }
