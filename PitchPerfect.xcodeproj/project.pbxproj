@@ -13,6 +13,7 @@
 		EE158BAE1E80233C00228BA2 /* AudioEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE158BAD1E80233C00228BA2 /* AudioEffectsViewController.swift */; };
 		EE3D3F081E82469F00BCB8A2 /* RotaryWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D3F071E82469F00BCB8A2 /* RotaryWheel.swift */; };
 		EE3D3F0A1E82BE6500BCB8A2 /* CircularSliderGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D3F091E82BE6500BCB8A2 /* CircularSliderGradient.swift */; };
+		EE5CF1F61E8400B800292217 /* AnimatedWaveform.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5CF1F51E8400B800292217 /* AnimatedWaveform.swift */; };
 		EE894A481E5C98A10066A4FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A471E5C98A10066A4FE /* AppDelegate.swift */; };
 		EE894A4D1E5C98A10066A4FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE894A4B1E5C98A10066A4FE /* Main.storyboard */; };
 		EE894A4F1E5C98A10066A4FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE894A4E1E5C98A10066A4FE /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		EE158BAD1E80233C00228BA2 /* AudioEffectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioEffectsViewController.swift; path = Controller/AudioEffectsViewController.swift; sourceTree = "<group>"; };
 		EE3D3F071E82469F00BCB8A2 /* RotaryWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RotaryWheel.swift; path = View/RotaryWheel.swift; sourceTree = "<group>"; };
 		EE3D3F091E82BE6500BCB8A2 /* CircularSliderGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularSliderGradient.swift; path = View/CircularSliderGradient.swift; sourceTree = "<group>"; };
+		EE5CF1F51E8400B800292217 /* AnimatedWaveform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedWaveform.swift; path = View/AnimatedWaveform.swift; sourceTree = "<group>"; };
 		EE894A441E5C98A10066A4FE /* PitchPerfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PitchPerfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE894A471E5C98A10066A4FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE894A4C1E5C98A10066A4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				EED3169A1E7FA56D00014B2D /* ArtKitButton.swift */,
 				EE3D3F071E82469F00BCB8A2 /* RotaryWheel.swift */,
 				EE3D3F091E82BE6500BCB8A2 /* CircularSliderGradient.swift */,
+				EE5CF1F51E8400B800292217 /* AnimatedWaveform.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				EED3169D1E80110000014B2D /* ArtKit.swift in Sources */,
 				EED3169B1E7FA56D00014B2D /* ArtKitButton.swift in Sources */,
 				EE894A481E5C98A10066A4FE /* AppDelegate.swift in Sources */,
+				EE5CF1F61E8400B800292217 /* AnimatedWaveform.swift in Sources */,
 				EE158BAE1E80233C00228BA2 /* AudioEffectsViewController.swift in Sources */,
 				EECA498D1E821C2A00B5198D /* CustomTraitCollectionViewController.swift in Sources */,
 				EE3D3F0A1E82BE6500BCB8A2 /* CircularSliderGradient.swift in Sources */,

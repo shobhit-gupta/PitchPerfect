@@ -8,6 +8,7 @@ target 'PitchPerfect' do
   # Pods for PitchPerfect
   pod 'HCRotaryWheel', '~> 0.1.3'
   pod 'HGCircularSlider', '~> 1.0.3'
+  pod "SwiftSiriWaveformView"
 
   target 'PitchPerfectTests' do
     inherit! :search_paths
