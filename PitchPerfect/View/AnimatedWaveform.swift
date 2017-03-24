@@ -17,21 +17,28 @@ class AnimatedWaveform: SwiftSiriWaveformView {
     var shouldHideWhenNotAnimating = false
 
     func begin() {
-        fadeIn()
-        self.timer = Timer.scheduledTimer(timeInterval: 3.0 / Double(self.bounds.width), target: self, selector: #selector(AnimatedWaveform.refreshAudioView(_:)), userInfo: nil, repeats: true)
+        fadeIn(duration: 0.5)
+        timer = Timer.scheduledTimer(timeInterval: 3.0 / Double(bounds.width), target: self, selector: #selector(AnimatedWaveform.refreshAudioView(_:)), userInfo: nil, repeats: true)
     }
     
     
-    func end() {
+    func end(completition: @escaping (Bool) -> Void = {(finished) in }) {
         guard let timer = timer else {
             print("AnimatedWaveform: No timer found")
             return
         }
         
         if shouldHideWhenNotAnimating {
-            fadeOut()
+            fadeOut(duration: 0.5) { (finished) in
+                timer.invalidate()
+                completition(finished)
+            }
+        } else {
+            timer.invalidate()
+            completition(true)
         }
-        timer.invalidate()
+        
+        
     }
     
     
@@ -41,25 +48,5 @@ class AnimatedWaveform: SwiftSiriWaveformView {
         }
         self.amplitude += self.change
     }
-    
-    
-    func fadeIn() {
-        if alpha < 1.0 {
-            UIView.animate(withDuration: 0.5,
-                           delay: 0.0,
-                           options: .curveEaseInOut,
-                           animations: { self.alpha = 1.0 })
-        }
-    }
-    
-    
-    func fadeOut() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0.0,
-                       options: .curveEaseInOut,
-                       animations: { self.alpha = 0.0 })
-    }
-    
-    
     
 }

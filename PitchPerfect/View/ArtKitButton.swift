@@ -10,7 +10,7 @@ import UIKit
 
 class ArtKitButton: UIButton {
     
-    enum buttonKind {
+    enum ButtonKind {
         case close
         case microphone
     }
@@ -20,7 +20,7 @@ class ArtKitButton: UIButton {
         case overlay
     }
 
-    var kind: buttonKind = .microphone {
+    var kind: ButtonKind = .microphone {
         didSet {
             setNeedsDisplay()
         }

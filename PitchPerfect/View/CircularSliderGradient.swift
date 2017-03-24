@@ -10,26 +10,24 @@ import UIKit
 import HGCircularSlider
 
 @IBDesignable
-class CircularSliderGradient: UIView {
+public class CircularSliderGradient: UIView {
 
-    @IBInspectable var opacity: CGFloat = 0.4
-    @IBInspectable var sliderLineWidth: CGFloat = 5.0
-    @IBInspectable var sliderThumbLineWidth: CGFloat = 4.0
-    @IBInspectable var sliderThumbRadius: CGFloat = 13.0
+    @IBInspectable public var opacity: CGFloat = 0.4
+    @IBInspectable public var sliderLineWidth: CGFloat = 5.0
+    @IBInspectable public var sliderThumbLineWidth: CGFloat = 4.0
+    @IBInspectable public var sliderThumbRadius: CGFloat = 13.0
     
     
-    var radius: CGFloat {
-        get {
-            // the minimum between the height/2 and the width/2
-            var radius =  min(bounds.midX, bounds.midY)
-            // all elements should be inside the view rect, for that we should subtract the highest value between the radius of thumb and the line width
-            radius -= max(sliderLineWidth, (sliderThumbRadius + sliderThumbLineWidth))
-            return radius
-        }
+    internal var radius: CGFloat {
+        // the minimum between the height/2 and the width/2
+        var radius =  min(bounds.midX, bounds.midY)
+        // all elements should be inside the view rect, for that we should subtract the highest value between the radius of thumb and the line width
+        radius -= max(sliderLineWidth, (sliderThumbRadius + sliderThumbLineWidth))
+        return radius
     }
     
     
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         let sliderRadius = radius
         let gradientRect = CGRect(x: bounds.midX - sliderRadius,
                                   y: bounds.midY - sliderRadius,

@@ -12,11 +12,25 @@ import HGCircularSlider
 
 
 class AudioEffectsViewController: CustomTraitCollectionViewController {
+    
+    enum State {
+        case playing
+        case notPlaying
+    }
 
     @IBOutlet weak var wheel: RotaryWheel!
     @IBOutlet weak var closeButton: ArtKitButton!
     @IBOutlet weak var circularSliderGradient: CircularSliderGradient!
     @IBOutlet weak var circularSlider: CircularSlider!
+    
+    var currentState: State = .notPlaying {
+        didSet {
+            updateUI()
+        }
+    }
+    
+    var currentEffect: AudioEffect?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +41,27 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
     override func viewDidLayoutSubviews() {
         wheel.redraw()
         circularSlider.setNeedsDisplay()
+        circularSliderGradient.sync(with: circularSlider)
+        circularSliderGradient.setNeedsDisplay()
+    }
+    
+    
+    func updateUI() {
+        switch currentState {
+        case .playing:
+            break
+        case .notPlaying:
+            break
+        }
     }
 
     
     @IBAction func close(_ sender: ArtKitButton) {
-        dismiss(animated: true, completion: nil)
+        if let navigationController = navigationController {
+            navigationController.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
 }
@@ -40,6 +70,7 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
 extension AudioEffectsViewController: RotaryProtocol {
     
     func wheelDidChangeValue(_ currentSector: Int32) {
+        currentEffect = AudioEffect(rawValue: Int(currentSector))
         // TODO: Apply audio effects
     }
     
@@ -75,12 +106,12 @@ extension AudioEffectsViewController {
     
     func setupWheel() {
         wheel.background = ArtKit.primaryColor
-        wheel.rotaryImage1 = ArtKit.imageOfHigh
-        wheel.rotaryImage2 = ArtKit.imageOfFast
-        wheel.rotaryImage3 = ArtKit.imageOfReverb
-        wheel.rotaryImage4 = ArtKit.imageOfLow
-        wheel.rotaryImage5 = ArtKit.imageOfSlow
-        wheel.rotaryImage6 = ArtKit.imageOfEcho
+        wheel.rotaryImage1 = AudioEffect.image(for: 1)
+        wheel.rotaryImage2 = AudioEffect.image(for: 2)
+        wheel.rotaryImage3 = AudioEffect.image(for: 3)
+        wheel.rotaryImage4 = AudioEffect.image(for: 4)
+        wheel.rotaryImage5 = AudioEffect.image(for: 5)
+        wheel.rotaryImage6 = AudioEffect.image(for: 6)
         wheel.delegate = self
     }
     
