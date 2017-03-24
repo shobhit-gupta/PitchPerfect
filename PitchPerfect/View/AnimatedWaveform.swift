@@ -18,7 +18,7 @@ class AnimatedWaveform: SwiftSiriWaveformView {
 
     func begin() {
         fadeIn(duration: 0.5)
-        self.timer = Timer.scheduledTimer(timeInterval: 3.0 / Double(self.bounds.width), target: self, selector: #selector(AnimatedWaveform.refreshAudioView(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 3.0 / Double(bounds.width), target: self, selector: #selector(AnimatedWaveform.refreshAudioView(_:)), userInfo: nil, repeats: true)
     }
     
     
