@@ -27,6 +27,8 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
     override func viewDidLayoutSubviews() {
         wheel.redraw()
         circularSlider.setNeedsDisplay()
+        circularSliderGradient.sync(with: circularSlider)
+        circularSliderGradient.setNeedsDisplay()
     }
 
     

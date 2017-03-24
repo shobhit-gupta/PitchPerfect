@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qJa-db-EK1">
-    <device id="retina3_5" orientation="portrait">
+    <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -37,17 +37,17 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ps8-64-MnZ" userLabel="Root Stack View">
-                                <rect key="frame" x="16" y="172.5" width="288" height="135"/>
+                                <rect key="frame" x="20" y="490" width="984" height="386"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6uf-Cu-Cyq" userLabel="Record Stack View">
-                                        <rect key="frame" x="123.5" y="0.0" width="41" height="84"/>
+                                        <rect key="frame" x="434" y="0.0" width="116" height="239"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAv-2E-GYe" userLabel="Microphone" customClass="ArtKitButton" customModule="PitchPerfect">
-                                                <rect key="frame" x="0.0" y="0.0" width="41" height="84"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="116" height="239"/>
                                                 <connections>
                                                     <action selector="pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y7q-h3-18x"/>
                                                 </connections>
@@ -58,10 +58,10 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Fjw-r2-In5" userLabel="Waveform Stack View">
-                                        <rect key="frame" x="0.0" y="84" width="288" height="51"/>
+                                        <rect key="frame" x="0.0" y="239" width="984" height="147"/>
                                         <subviews>
                                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9af-9p-tWc" customClass="AnimatedWaveform" customModule="PitchPerfect">
-                                                <rect key="frame" x="0.0" y="0.0" width="288" height="51"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="984" height="147"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </view>
                                         </subviews>
@@ -101,17 +101,17 @@
                         <viewControllerLayoutGuide type="bottom" id="bqF-Tl-gzr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ehL-tu-WGg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RcP-lg-gAg" userLabel="Main Stack View">
-                                <rect key="frame" x="16" y="28" width="288" height="452"/>
+                                <rect key="frame" x="20" y="28" width="984" height="1338"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="F43-Ch-L42" userLabel="Wheel Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="288" height="452"/>
+                                        <rect key="frame" x="348" y="0.0" width="288" height="1338"/>
                                         <subviews>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1B-49-pth" customClass="RotaryWheel" customModule="PitchPerfect">
-                                                <rect key="frame" x="0.0" y="82" width="288" height="288"/>
+                                                <rect key="frame" x="0.0" y="525" width="288" height="288"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="j1B-49-pth" secondAttribute="height" multiplier="1:1" id="uv0-bn-gte"/>
                                                 </constraints>
@@ -133,21 +133,21 @@
                                 <variation key="heightClass=regular-widthClass=compact" alignment="fill"/>
                             </stackView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="br6-KH-4UA" customClass="CircularSliderGradient" customModule="PitchPerfect">
-                                <rect key="frame" x="117.5" y="211.5" width="86" height="86"/>
+                                <rect key="frame" x="469.5" y="654.5" width="86" height="86"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2r6-vN-ZEb" customClass="CircularSlider" customModule="HGCircularSlider">
-                                <rect key="frame" x="117.5" y="211.5" width="86" height="86"/>
+                                <rect key="frame" x="469.5" y="654.5" width="86" height="86"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2r6-vN-ZEb" secondAttribute="height" multiplier="1:1" id="GGb-67-t6j"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70c-gM-PBt" userLabel="Page Actions Stack View">
-                                <rect key="frame" x="285" y="28" width="19" height="19"/>
+                                <rect key="frame" x="949.5" y="28" width="54.5" height="54.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixZ-Tn-rZm" userLabel="Close" customClass="ArtKitButton" customModule="PitchPerfect">
-                                        <rect key="frame" x="0.0" y="0.0" width="19" height="19"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="54.5" height="54.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ixZ-Tn-rZm" secondAttribute="height" multiplier="1:1" id="Ny1-bU-Tyg"/>
                                         </constraints>
