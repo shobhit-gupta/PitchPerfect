@@ -31,8 +31,10 @@ class RotaryWheel: HCRotaryWheel {
     
     
     func redraw() {
-        // Remove existing drawing
-        layer.sublayers = nil
+        // Remove existing drawing or rather subviews in this case
+        subviews.forEach() {
+            $0.removeFromSuperview()
+        }
         
         // Redraw
         setNeedsDisplay()
