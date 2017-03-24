@@ -11,8 +11,19 @@ import UIKit
 
 class RecordViewController: UIViewController {
     
+    enum State {
+        case recording
+        case notRecording
+    }
+    
     @IBOutlet weak var microphoneButton: ArtKitButton!
     @IBOutlet weak var waveform: AnimatedWaveform!
+    
+    var currentState: State = .notRecording {
+        didSet {
+            updateUI()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,21 +31,35 @@ class RecordViewController: UIViewController {
     }
     
     
-    @IBAction func pressed(_ sender: ArtKitButton) {
-        sender.currentState = sender.currentState == .normal ? .overlay : .normal
-        if sender.currentState == .normal {
-            waveform.end()
-            performSegue(withIdentifier: "showAudioEffects", sender: self)
-        } else {
-            waveform.begin()
-        }
-    }
-    
     override func viewDidLayoutSubviews() {
         setupWaveform()
         waveform.setNeedsDisplay()
     }
 
+    
+    func updateUI() {
+        switch currentState {
+        case .recording:
+            waveform.begin()
+            microphoneButton.currentState = .overlay
+        case .notRecording:
+            waveform.end() { (finished) in
+                self.microphoneButton.currentState = .normal
+                self.performSegue(withIdentifier: "showAudioEffects", sender: self)
+            }
+        }
+    }
+    
+    
+    @IBAction func pressed(_ sender: ArtKitButton) {
+        switch currentState {
+        case .recording:
+            currentState = .notRecording
+        case .notRecording:
+            currentState = .recording
+        }
+    }
+    
 }
 
 
