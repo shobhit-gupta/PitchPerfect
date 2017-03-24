@@ -16,7 +16,7 @@
 		EE5CF1F61E8400B800292217 /* AnimatedWaveform.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5CF1F51E8400B800292217 /* AnimatedWaveform.swift */; };
 		EE5D05051E843A2700373C9F /* UIView+Fadeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05041E843A2700373C9F /* UIView+Fadeable.swift */; };
 		EE5D05071E850C7700373C9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05061E850C7700373C9F /* Constants.swift */; };
-		EE5D05091E850DEA00373C9F /* AudioEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05081E850DEA00373C9F /* AudioEffects.swift */; };
+		EE5D05091E850DEA00373C9F /* AudioEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05081E850DEA00373C9F /* AudioEffect.swift */; };
 		EE894A481E5C98A10066A4FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A471E5C98A10066A4FE /* AppDelegate.swift */; };
 		EE894A4D1E5C98A10066A4FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE894A4B1E5C98A10066A4FE /* Main.storyboard */; };
 		EE894A4F1E5C98A10066A4FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE894A4E1E5C98A10066A4FE /* Assets.xcassets */; };
@@ -62,7 +62,7 @@
 		EE5CF1F51E8400B800292217 /* AnimatedWaveform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedWaveform.swift; path = View/AnimatedWaveform.swift; sourceTree = "<group>"; };
 		EE5D05041E843A2700373C9F /* UIView+Fadeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Fadeable.swift"; path = "Reusable/UIView+Fadeable.swift"; sourceTree = "<group>"; };
 		EE5D05061E850C7700373C9F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		EE5D05081E850DEA00373C9F /* AudioEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioEffects.swift; path = Model/AudioEffects.swift; sourceTree = "<group>"; };
+		EE5D05081E850DEA00373C9F /* AudioEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioEffect.swift; path = Model/AudioEffect.swift; sourceTree = "<group>"; };
 		EE894A441E5C98A10066A4FE /* PitchPerfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PitchPerfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE894A471E5C98A10066A4FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE894A4C1E5C98A10066A4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		EE5D050A1E850E0800373C9F /* Model  */ = {
 			isa = PBXGroup;
 			children = (
-				EE5D05081E850DEA00373C9F /* AudioEffects.swift */,
+				EE5D05081E850DEA00373C9F /* AudioEffect.swift */,
 			);
 			name = "Model ";
 			sourceTree = "<group>";
@@ -522,7 +522,7 @@
 				EED3169D1E80110000014B2D /* ArtKit.swift in Sources */,
 				EE5D05071E850C7700373C9F /* Constants.swift in Sources */,
 				EED3169B1E7FA56D00014B2D /* ArtKitButton.swift in Sources */,
-				EE5D05091E850DEA00373C9F /* AudioEffects.swift in Sources */,
+				EE5D05091E850DEA00373C9F /* AudioEffect.swift in Sources */,
 				EE5D05051E843A2700373C9F /* UIView+Fadeable.swift in Sources */,
 				EE894A481E5C98A10066A4FE /* AppDelegate.swift in Sources */,
 				EE5CF1F61E8400B800292217 /* AnimatedWaveform.swift in Sources */,

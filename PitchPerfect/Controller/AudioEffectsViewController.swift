@@ -29,7 +29,7 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
         }
     }
     
-    var currentEffect: AudioEffects?
+    var currentEffect: AudioEffect?
     
     
     override func viewDidLoad() {
@@ -70,7 +70,7 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
 extension AudioEffectsViewController: RotaryProtocol {
     
     func wheelDidChangeValue(_ currentSector: Int32) {
-        currentEffect = AudioEffects(rawValue: Int(currentSector))
+        currentEffect = AudioEffect(rawValue: Int(currentSector))
         // TODO: Apply audio effects
     }
     
@@ -106,12 +106,12 @@ extension AudioEffectsViewController {
     
     func setupWheel() {
         wheel.background = ArtKit.primaryColor
-        wheel.rotaryImage1 = AudioEffects.image(for: 1)
-        wheel.rotaryImage2 = AudioEffects.image(for: 2)
-        wheel.rotaryImage3 = AudioEffects.image(for: 3)
-        wheel.rotaryImage4 = AudioEffects.image(for: 4)
-        wheel.rotaryImage5 = AudioEffects.image(for: 5)
-        wheel.rotaryImage6 = AudioEffects.image(for: 6)
+        wheel.rotaryImage1 = AudioEffect.image(for: 1)
+        wheel.rotaryImage2 = AudioEffect.image(for: 2)
+        wheel.rotaryImage3 = AudioEffect.image(for: 3)
+        wheel.rotaryImage4 = AudioEffect.image(for: 4)
+        wheel.rotaryImage5 = AudioEffect.image(for: 5)
+        wheel.rotaryImage6 = AudioEffect.image(for: 6)
         wheel.delegate = self
     }
     

@@ -1,5 +1,5 @@
 //
-//  AudioEffects.swift
+//  AudioEffect.swift
 //  PitchPerfect
 //
 //  Created by Shobhit Gupta on 24/03/17.
@@ -10,21 +10,24 @@ import Foundation
 import UIKit
 
 
-enum AudioEffects: Int {
+enum AudioEffect: Int {
     
-    case high, fast, reverb, low, slow, echo
+    case high = 1, fast, reverb, low, slow, echo
     
     func image() -> UIImage {
-        return AudioEffects.image(for: self)
+        return AudioEffect.image(for: self)
     }
     
     
-    static func image(for audioEffect: AudioEffects.RawValue) -> UIImage {
-        return AudioEffects.image(for: audioEffect.hashValue)
+    static func image(for audioEffect: AudioEffect.RawValue) -> UIImage? {
+        if let audioEffect = AudioEffect(rawValue: audioEffect) {
+            return AudioEffect.image(for: audioEffect)
+        }
+        return nil
     }
     
     
-    static func image(for audioEffect: AudioEffects) -> UIImage {
+    static func image(for audioEffect: AudioEffect) -> UIImage {
         let image: UIImage
         switch audioEffect {
         case .high:
