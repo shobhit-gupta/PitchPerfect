@@ -22,16 +22,23 @@ class AnimatedWaveform: SwiftSiriWaveformView {
     }
     
     
-    func end() {
+    func end(completition: @escaping (Bool) -> Void = {(finished) in }) {
         guard let timer = timer else {
             print("AnimatedWaveform: No timer found")
             return
         }
         
         if shouldHideWhenNotAnimating {
-            fadeOut(duration: 0.5)
+            fadeOut(duration: 0.5) { (finished) in
+                timer.invalidate()
+                completition(finished)
+            }
+        } else {
+            timer.invalidate()
+            completition(true)
         }
-        timer.invalidate()
+        
+        
     }
     
     
