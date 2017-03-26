@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AVFoundation
 
 class RecordViewController: UIViewController {
     
@@ -58,9 +58,21 @@ class RecordViewController: UIViewController {
     @IBAction func pressed(_ sender: ArtKitButton) {
         switch currentState {
         case .recording:
-            currentState = .notRecording
+            AudioManipulator.shared.stopRecording()
+ 
         case .notRecording:
-            currentState = .recording
+            do {
+                try AudioManipulator.shared.recordAudio(sender: self)
+            } catch AppError.AudioManipulator.recorderOccupied {
+                print(AppError.AudioManipulator.recorderOccupied.localizedDescription)
+                return
+            } catch AppError.AudioManipulator.recordPermissionDenied {
+                print(AppError.AudioManipulator.recordPermissionDenied.localizedDescription)
+                return
+            } catch {
+                print(error.localizedDescription)
+                return
+            }
         }
     }
     
@@ -102,3 +114,23 @@ extension RecordViewController {
     }
     
 }
+
+
+extension RecordViewController: ExtendedAVAudioRecorderDelegate {
+    
+    func audioRecorderDidBeginRecording(_ recorder: AVAudioRecorder) {
+        currentState = .recording
+    }
+    
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if flag {
+            currentState = .notRecording(didFinishRecording: true)
+            debugPrint("RecordViewController: Recording successful: \(recorder.url)")
+        } else {
+            currentState = .notRecording(didFinishRecording: false)
+            debugPrint("RecordViewController: Recording failed")
+        }
+    }
+    
+}
+
