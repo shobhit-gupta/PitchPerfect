@@ -10,23 +10,18 @@ import UIKit
 
 class ArtKitButton: UIButton {
     
-    enum ButtonKind {
-        case close
-        case microphone
-    }
-    
-    enum blendingMode {
+    enum BlendMode {
         case normal
         case overlay
     }
-
-    var kind: ButtonKind = .microphone {
-        didSet {
-            setNeedsDisplay()
-        }
+    
+    enum ArtButtonKind {
+        case close
+        case microphone(blendMode: BlendMode)
     }
     
-    var currentState: blendingMode = .normal {
+
+    var kind: ArtButtonKind = .microphone(blendMode: .normal) {
         didSet {
             setNeedsDisplay()
         }
@@ -34,12 +29,12 @@ class ArtKitButton: UIButton {
     
     
     override func draw(_ rect: CGRect) {
-        switch (kind, currentState) {
-        case (.microphone, .normal):
+        switch kind {
+        case .microphone(blendMode: .normal):
             ArtKit.drawMicrophoneButton(frame: bounds, isPressed: false)
-        case (.microphone, .overlay):
+        case .microphone(blendMode: .overlay):
             ArtKit.drawMicrophoneButton(frame: bounds, isPressed: true)
-        case (.close, .normal), (.close, .overlay):
+        case .close:
             ArtKit.drawClose(frame: bounds)
         }
     }

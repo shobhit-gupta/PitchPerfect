@@ -7,19 +7,19 @@
 //
 
 import UIKit
-
+import AVFoundation
 
 class RecordViewController: UIViewController {
     
     enum State {
         case recording
-        case notRecording
+        case notRecording(didFinishRecording: Bool)
     }
     
     @IBOutlet weak var microphoneButton: ArtKitButton!
     @IBOutlet weak var waveform: AnimatedWaveform!
     
-    var currentState: State = .notRecording {
+    var currentState: State = .notRecording(didFinishRecording: false) {
         didSet {
             updateUI()
         }
@@ -38,14 +38,18 @@ class RecordViewController: UIViewController {
 
     
     func updateUI() {
+        
         switch currentState {
         case .recording:
             waveform.begin()
-            microphoneButton.currentState = .overlay
-        case .notRecording:
+            microphoneButton.kind = .microphone(blendMode: .overlay)
+        
+        case .notRecording(let didFinishRecording):
             waveform.end() { (finished) in
-                self.microphoneButton.currentState = .normal
-                self.performSegue(withIdentifier: "showAudioEffects", sender: self)
+                self.microphoneButton.kind = .microphone(blendMode: .normal)
+                if didFinishRecording {
+                    self.performSegue(withIdentifier: "showAudioEffects", sender: self)
+                }
             }
         }
     }
@@ -54,19 +58,34 @@ class RecordViewController: UIViewController {
     @IBAction func pressed(_ sender: ArtKitButton) {
         switch currentState {
         case .recording:
-            currentState = .notRecording
+            AudioManipulator.shared.stopRecording()
+ 
         case .notRecording:
-            currentState = .recording
+            do {
+                try AudioManipulator.shared.recordAudio(sender: self)
+            } catch AppError.AudioManipulator.recorderOccupied {
+                print(AppError.AudioManipulator.recorderOccupied.localizedDescription)
+                return
+            } catch AppError.AudioManipulator.recordPermissionDenied {
+                print(AppError.AudioManipulator.recordPermissionDenied.localizedDescription)
+                return
+            } catch {
+                print(error.localizedDescription)
+                return
+            }
         }
     }
     
 }
 
 
+/*******************************************************************************
+                                Initial Setup
+ ******************************************************************************/
 extension RecordViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return Constants.StatusBarStyle.RecordViewController
     }
     
     
@@ -83,7 +102,7 @@ extension RecordViewController {
     
     
     func setupMicrophoneButton() {
-        microphoneButton.kind = .microphone
+        microphoneButton.kind = .microphone(blendMode: .normal)
         microphoneButton.backgroundColor = ArtKit.primaryColor
     }
     
@@ -95,3 +114,23 @@ extension RecordViewController {
     }
     
 }
+
+
+extension RecordViewController: ExtendedAVAudioRecorderDelegate {
+    
+    func audioRecorderDidBeginRecording(_ recorder: AVAudioRecorder) {
+        currentState = .recording
+    }
+    
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if flag {
+            currentState = .notRecording(didFinishRecording: true)
+            debugPrint("RecordViewController: Recording successful: \(recorder.url)")
+        } else {
+            currentState = .notRecording(didFinishRecording: false)
+            debugPrint("RecordViewController: Recording failed")
+        }
+    }
+    
+}
+

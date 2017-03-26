@@ -14,7 +14,7 @@ import HCRotaryWheel
 class RotaryWheel: HCRotaryWheel {
     
     var shouldUseTimer = false
-    var rotateToSector: Int = 0
+    var rotateToSector: Int = Constants.Wheel.DefaultSector
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
