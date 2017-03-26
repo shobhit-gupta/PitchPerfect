@@ -13,13 +13,13 @@ class RecordViewController: UIViewController {
     
     enum State {
         case recording
-        case notRecording
+        case notRecording(didFinishRecording: Bool)
     }
     
     @IBOutlet weak var microphoneButton: ArtKitButton!
     @IBOutlet weak var waveform: AnimatedWaveform!
     
-    var currentState: State = .notRecording {
+    var currentState: State = .notRecording(didFinishRecording: false) {
         didSet {
             updateUI()
         }
@@ -38,14 +38,18 @@ class RecordViewController: UIViewController {
 
     
     func updateUI() {
+        
         switch currentState {
         case .recording:
             waveform.begin()
-            microphoneButton.currentState = .overlay
-        case .notRecording:
+            microphoneButton.kind = .microphone(blendMode: .overlay)
+        
+        case .notRecording(let didFinishRecording):
             waveform.end() { (finished) in
-                self.microphoneButton.currentState = .normal
-                self.performSegue(withIdentifier: "showAudioEffects", sender: self)
+                self.microphoneButton.kind = .microphone(blendMode: .normal)
+                if didFinishRecording {
+                    self.performSegue(withIdentifier: "showAudioEffects", sender: self)
+                }
             }
         }
     }
@@ -63,10 +67,13 @@ class RecordViewController: UIViewController {
 }
 
 
+/*******************************************************************************
+                                Initial Setup
+ ******************************************************************************/
 extension RecordViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return Constants.StatusBarStyle.RecordViewController
     }
     
     
@@ -83,7 +90,7 @@ extension RecordViewController {
     
     
     func setupMicrophoneButton() {
-        microphoneButton.kind = .microphone
+        microphoneButton.kind = .microphone(blendMode: .normal)
         microphoneButton.backgroundColor = ArtKit.primaryColor
     }
     

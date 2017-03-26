@@ -13,31 +13,34 @@ import SwiftSiriWaveformView
 class AnimatedWaveform: SwiftSiriWaveformView {
 
     var timer:Timer?
-    var change:CGFloat = 0.01
+    var change:CGFloat = Constants.Waveform.ChangePerFrameInAmplitude
     var shouldHideWhenNotAnimating = false
 
     func begin() {
-        fadeIn(duration: 0.5)
+        fadeIn(duration: Constants.Waveform.FadeInDuration)
         timer = Timer.scheduledTimer(timeInterval: 3.0 / Double(bounds.width), target: self, selector: #selector(AnimatedWaveform.refreshAudioView(_:)), userInfo: nil, repeats: true)
     }
     
     
     func end(completition: @escaping (Bool) -> Void = {(finished) in }) {
         guard let timer = timer else {
-            print("AnimatedWaveform: No timer found")
+            debugPrint("AnimatedWaveform: No timer found")
             return
         }
-        
-        if shouldHideWhenNotAnimating {
-            fadeOut(duration: 0.5) { (finished) in
-                timer.invalidate()
-                completition(finished)
-            }
-        } else {
+
+        func fadeOutCompletion(priorWorkFinished: Bool) {
             timer.invalidate()
-            completition(true)
+            completition(priorWorkFinished)
         }
         
+        
+        if shouldHideWhenNotAnimating {
+            fadeOut(duration: Constants.Waveform.FadeOutDuration) { (finished) in
+                fadeOutCompletion(priorWorkFinished: finished)
+            }
+        } else {
+            fadeOutCompletion(priorWorkFinished: true)
+        }
         
     }
     

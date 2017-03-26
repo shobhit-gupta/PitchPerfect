@@ -12,10 +12,10 @@ import HGCircularSlider
 @IBDesignable
 public class CircularSliderGradient: UIView {
 
-    @IBInspectable public var opacity: CGFloat = 0.4
-    @IBInspectable public var sliderLineWidth: CGFloat = 5.0
-    @IBInspectable public var sliderThumbLineWidth: CGFloat = 4.0
-    @IBInspectable public var sliderThumbRadius: CGFloat = 13.0
+    @IBInspectable public var opacity: CGFloat = Constants.CircularSlider.GradientOpacity
+    @IBInspectable public var sliderLineWidth: CGFloat = Constants.CircularSlider.LineWidth
+    @IBInspectable public var sliderThumbLineWidth: CGFloat = Constants.CircularSlider.ThumbLineWidth
+    @IBInspectable public var sliderThumbRadius: CGFloat = Constants.CircularSlider.ThumbRadius
     
     
     internal var radius: CGFloat {
