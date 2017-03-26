@@ -16,6 +16,7 @@ class AudioManipulator: NSObject {
     public var currentRecording: URL?
     
     fileprivate var audioRecorder: AVAudioRecorder?
+    fileprivate var session: AVAudioSession?
     
     private override init() {
         super.init()
@@ -24,40 +25,18 @@ class AudioManipulator: NSObject {
 }
 
 
+// Mark: Recording
 extension AudioManipulator {
     
-    func recordAudio(sender: ExtendedAVAudioRecorderDelegate) throws {
+    public func recordAudio(sender: ExtendedAVAudioRecorderDelegate) throws {
         
-        guard audioRecorder == nil || !audioRecorder!.isRecording else {
-            throw AppError.AudioManipulator.recorderOccupied
-        }
+        try prepareSession()
+        try prepareForRecording(sender: sender)
         
-        let recordingURL = try FileManager.default.createPathForFile(withExtension: Constants.Recording.FileExtension,
-                                                                     relativeTo: Constants.Recording.DataContainerDirectory,
-                                                                     at: Constants.Recording.Folder,
-                                                                     domainMask: Constants.Recording.DomainMask)
-        
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        } catch {
-            debugPrint("AudioManipulator: Failed AVAudio")
-            return
-        }
-        
-        guard session.recordPermission() != .denied else {
-            throw AppError.AudioManipulator.recordPermissionDenied
-        }
-        
-        self.audioRecorder = try AVAudioRecorder(url: recordingURL, settings: [:])
-        self.audioRecorder?.delegate = sender
-        self.audioRecorder?.isMeteringEnabled = true
-        self.audioRecorder?.prepareToRecord()
-        
-        session.requestRecordPermission() { (granted) in
+        session!.requestRecordPermission() { (granted) in
             if granted {
-                self.audioRecorder?.record()
                 if let audioRecorder = self.audioRecorder {
+                    audioRecorder.record()
                     sender.audioRecorderDidBeginRecording(audioRecorder)
                 }
             }
@@ -66,7 +45,7 @@ extension AudioManipulator {
     }
     
     
-    func stopRecording() {
+    public func stopRecording() {
         guard let audioRecorder = audioRecorder, audioRecorder.isRecording else {
             print("AudioManipulator: Trying to stop a recording when no recording is in progress.")
             return
@@ -86,10 +65,38 @@ extension AudioManipulator {
     }
     
     
+    internal func prepareSession() throws {
+        if session == nil {
+            session = AVAudioSession.sharedInstance()
+        }
+        try session?.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        guard session?.recordPermission() != .denied else {
+            throw AppError.AudioManipulator.recordPermissionDenied
+        }
+    }
     
+    
+    internal func prepareForRecording(sender: ExtendedAVAudioRecorderDelegate) throws {
+        guard audioRecorder == nil || !audioRecorder!.isRecording else {
+            throw AppError.AudioManipulator.recorderOccupied
+        }
+        let recordingURL = try FileManager.default.createPathForFile(withExtension: Constants.Recording.FileExtension,
+                                                                     relativeTo: Constants.Recording.DataContainerDirectory,
+                                                                     at: Constants.Recording.Folder,
+                                                                     domainMask: Constants.Recording.DomainMask)
+        audioRecorder = try AVAudioRecorder(url: recordingURL, settings: [:])
+        audioRecorder!.delegate = sender
+        audioRecorder!.isMeteringEnabled = true
+        audioRecorder!.prepareToRecord()
+    }
     
 }
 
+
+// Mark: Playing
+extension AudioManipulator {
+    
+}
 
 
 
