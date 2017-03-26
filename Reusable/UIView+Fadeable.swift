@@ -10,9 +10,11 @@ import Foundation
 import UIKit
 
 
-extension UIView {
+public extension UIView {
 
-    func fadeIn(duration: TimeInterval = 1.0, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
+    public func fadeIn(duration: TimeInterval = ReusableConstants.UIView.Fade.In.Duration,
+                       delay: TimeInterval = ReusableConstants.UIView.Fade.In.Delay,
+                       completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
         
         if isHidden {
             alpha = 0.0
@@ -26,19 +28,45 @@ extension UIView {
     }
     
     
-    func fadeOut(duration: TimeInterval = 1.0, delay: TimeInterval = 0.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
+    public func fadeOut(duration: TimeInterval = ReusableConstants.UIView.Fade.Out.Duration,
+                        delay: TimeInterval = ReusableConstants.UIView.Fade.Out.Delay,
+                        completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
+        
         UIView.animate(withDuration: duration, delay: delay, options: .curveEaseInOut, animations: {
             self.alpha = 0.0
         }, completion: completion)
+        
     }
     
     
-    class func fade(out outView: UIView, andHide shouldHide: Bool = true, thenFadeIn inView: UIView, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
+    public class func fade(out outView: UIView,
+                           andHide shouldHide: Bool = true,
+                           thenFadeIn inView: UIView,
+                           completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
+        
         outView.fadeOut { _ in
             outView.isHidden = shouldHide
             inView.fadeIn(completion: completion)
         }
         
+    }
+    
+}
+
+
+public extension ReusableConstants.UIView {
+    
+    enum Fade {
+        
+        enum In {
+            static let Duration: TimeInterval = 1.0
+            static let Delay: TimeInterval = 0.0
+        }
+        
+        enum Out {
+            static let Duration: TimeInterval = 1.0
+            static let Delay: TimeInterval = 0.0
+        }
     }
     
 }
