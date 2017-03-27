@@ -13,25 +13,33 @@ import HGCircularSlider
 
 class AudioEffectsViewController: CustomTraitCollectionViewController {
     
-    enum State {
-        case playing
-        case notPlaying
-    }
-
+    // MARK: IBOutlets
     @IBOutlet weak var wheel: RotaryWheel!
     @IBOutlet weak var closeButton: ArtKitButton!
     @IBOutlet weak var circularSliderGradient: CircularSliderGradient!
     @IBOutlet weak var circularSlider: CircularSlider!
     
-    var currentState: State = .notPlaying {
+    
+    // MARK: Public variables and types
+    public var recording: URL!
+
+    
+    // MARK: Private variables and types
+    fileprivate enum State {
+        case playing
+        case notPlaying
+    }
+
+    fileprivate var currentState: State = .notPlaying {
         didSet {
             updateUI()
         }
     }
     
-    var currentEffect: AudioEffect?
+    fileprivate var currentEffect: AudioEffect?
     
     
+    // MARK: ViewController Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -44,18 +52,9 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
         circularSliderGradient.sync(with: circularSlider)
         circularSliderGradient.setNeedsDisplay()
     }
-    
-    
-    func updateUI() {
-        switch currentState {
-        case .playing:
-            break
-        case .notPlaying:
-            break
-        }
-    }
 
     
+    // MARK: IBActions
     @IBAction func close(_ sender: ArtKitButton) {
         if let navigationController = navigationController {
             navigationController.popViewController(animated: true)
@@ -67,16 +66,9 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
 }
 
 
-extension AudioEffectsViewController: RotaryProtocol {
-    
-    func wheelDidChangeValue(_ currentSector: Int32) {
-        currentEffect = AudioEffect(rawValue: Int(currentSector))
-        // TODO: Apply audio effects
-    }
-    
-}
-
-
+//******************************************************************************
+//                              MARK: User Interface
+//******************************************************************************
 extension AudioEffectsViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -139,4 +131,29 @@ extension AudioEffectsViewController {
         circularSliderGradient.sync(with: circularSlider)
     }
     
+    
+    func updateUI() {
+        switch currentState {
+        case .playing:
+            break
+        case .notPlaying:
+            break
+        }
+    }
+    
 }
+
+
+//******************************************************************************
+//                              MARK: RotaryProtocol
+//******************************************************************************
+extension AudioEffectsViewController: RotaryProtocol {
+    
+    func wheelDidChangeValue(_ currentSector: Int32) {
+        currentEffect = AudioEffect(rawValue: Int(currentSector))
+        // TODO: Apply audio effects
+    }
+    
+}
+
+

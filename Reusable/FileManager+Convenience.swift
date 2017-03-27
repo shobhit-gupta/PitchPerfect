@@ -85,6 +85,7 @@ public extension Error_ {
         case pathNotFound(forDirectory: FileManager.SearchPathDirectory, inDomain: FileManager.SearchPathDomainMask)
         
         var localizedDescription: String {
+            // TODO: See if this error is being caught or not.
             var description = "FileManager Error: "
             switch self {
             case let .pathNotFound(directory, domain):

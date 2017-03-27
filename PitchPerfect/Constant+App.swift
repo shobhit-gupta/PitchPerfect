@@ -42,4 +42,8 @@ extension Constant {
         static let DefaultSector = 0
     }
     
+    enum Segue {
+        static let ShowAudioEffects = "showAudioEffects"
+    }
+    
 }
