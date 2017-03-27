@@ -29,7 +29,6 @@ class AudioManipulator: NSObject {
 extension AudioManipulator {
     
     public func recordAudio(sender: ExtendedAVAudioRecorderDelegate) throws {
-        
         try prepareSession()
         try prepareForRecording(sender: sender)
         
@@ -71,19 +70,19 @@ extension AudioManipulator {
         }
         try session?.setCategory(AVAudioSessionCategoryPlayAndRecord)
         guard session?.recordPermission() != .denied else {
-            throw AppError.AudioManipulator.recordPermissionDenied
+            throw Error_.AudioManipulator.recordPermissionDenied
         }
     }
     
     
     internal func prepareForRecording(sender: ExtendedAVAudioRecorderDelegate) throws {
         guard audioRecorder == nil || !audioRecorder!.isRecording else {
-            throw AppError.AudioManipulator.recorderOccupied
+            throw Error_.AudioManipulator.recorderOccupied
         }
-        let recordingURL = try FileManager.default.createPathForFile(withExtension: Constants.Recording.FileExtension,
-                                                                     relativeTo: Constants.Recording.DataContainerDirectory,
-                                                                     at: Constants.Recording.Folder,
-                                                                     domainMask: Constants.Recording.DomainMask)
+        let recordingURL = try FileManager.default.createPathForFile(withExtension: Constant.Recording.FileExtension,
+                                                                     relativeTo: Constant.Recording.DataContainerDirectory,
+                                                                     at: Constant.Recording.Folder,
+                                                                     domainMask: Constant.Recording.DomainMask)
         audioRecorder = try AVAudioRecorder(url: recordingURL, settings: [:])
         audioRecorder!.delegate = sender
         audioRecorder!.isMeteringEnabled = true

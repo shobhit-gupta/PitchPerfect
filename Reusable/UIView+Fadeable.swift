@@ -12,8 +12,8 @@ import UIKit
 
 public extension UIView {
 
-    public func fadeIn(duration: TimeInterval = ReusableConstants.UIView.Fade.In.Duration,
-                       delay: TimeInterval = ReusableConstants.UIView.Fade.In.Delay,
+    public func fadeIn(duration: TimeInterval = Constant.UIView_.Fade.In.Duration,
+                       delay: TimeInterval = Constant.UIView_.Fade.In.Delay,
                        completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
         
         if isHidden {
@@ -28,8 +28,8 @@ public extension UIView {
     }
     
     
-    public func fadeOut(duration: TimeInterval = ReusableConstants.UIView.Fade.Out.Duration,
-                        delay: TimeInterval = ReusableConstants.UIView.Fade.Out.Delay,
+    public func fadeOut(duration: TimeInterval = Constant.UIView_.Fade.Out.Duration,
+                        delay: TimeInterval = Constant.UIView_.Fade.Out.Delay,
                         completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
         
         UIView.animate(withDuration: duration, delay: delay, options: .curveEaseInOut, animations: {
@@ -54,7 +54,7 @@ public extension UIView {
 }
 
 
-public extension ReusableConstants.UIView {
+public extension Constant.UIView_ {
     
     enum Fade {
         

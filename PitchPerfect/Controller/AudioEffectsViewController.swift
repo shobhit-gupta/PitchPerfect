@@ -80,7 +80,7 @@ extension AudioEffectsViewController: RotaryProtocol {
 extension AudioEffectsViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Constants.StatusBarStyle.AudioEffectsViewController
+        return Constant.StatusBarStyle.AudioEffectsViewController
     }
     
     
@@ -124,11 +124,11 @@ extension AudioEffectsViewController {
         // Track
         circularSlider.trackColor = ArtKit.shadowOfPrimaryColor
         circularSlider.trackFillColor = ArtKit.highlightOfPrimaryColor
-        circularSlider.lineWidth = Constants.CircularSlider.LineWidth
+        circularSlider.lineWidth = Constant.CircularSlider.LineWidth
         
         // Thumb
-        circularSlider.thumbLineWidth = Constants.CircularSlider.ThumbLineWidth
-        circularSlider.thumbRadius = Constants.CircularSlider.ThumbRadius
+        circularSlider.thumbLineWidth = Constant.CircularSlider.ThumbLineWidth
+        circularSlider.thumbRadius = Constant.CircularSlider.ThumbRadius
         circularSlider.endThumbTintColor = ArtKit.secondaryColor
         circularSlider.endThumbStrokeColor = ArtKit.secondaryColor
         circularSlider.endThumbStrokeHighlightedColor = ArtKit.secondaryColor

@@ -1,5 +1,5 @@
 //
-//  AppError.swift
+//  Error_+App.swift
 //  PitchPerfect
 //
 //  Created by Shobhit Gupta on 26/03/17.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum AppError {
+extension Error_ {
     
     enum AudioManipulator: Error {
         case recorderOccupied

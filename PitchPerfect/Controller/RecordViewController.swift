@@ -63,11 +63,11 @@ class RecordViewController: UIViewController {
         case .notRecording:
             do {
                 try AudioManipulator.shared.recordAudio(sender: self)
-            } catch AppError.AudioManipulator.recorderOccupied {
-                print(AppError.AudioManipulator.recorderOccupied.localizedDescription)
+            } catch Error_.AudioManipulator.recorderOccupied {
+                print(Error_.AudioManipulator.recorderOccupied.localizedDescription)
                 return
-            } catch AppError.AudioManipulator.recordPermissionDenied {
-                print(AppError.AudioManipulator.recordPermissionDenied.localizedDescription)
+            } catch Error_.AudioManipulator.recordPermissionDenied {
+                print(Error_.AudioManipulator.recordPermissionDenied.localizedDescription)
                 return
             } catch {
                 print(error.localizedDescription)
@@ -85,7 +85,7 @@ class RecordViewController: UIViewController {
 extension RecordViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Constants.StatusBarStyle.RecordViewController
+        return Constant.StatusBarStyle.RecordViewController
     }
     
     

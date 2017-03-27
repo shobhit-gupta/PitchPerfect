@@ -1,5 +1,5 @@
 //
-//  ReusableError.swift
+//  Error_.swift
 //  PitchPerfect
 //
 //  Created by Shobhit Gupta on 25/03/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum ReusableError {
-    // Extend ReusableError in individual files.
+public enum Error_ {
+    // Extend Error_ in individual files.
     // Then import this file along with specific files that need to be reused in future projects.
 }

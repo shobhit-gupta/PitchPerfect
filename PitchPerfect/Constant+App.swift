@@ -1,5 +1,5 @@
 //
-//  Constants.swift
+//  Constant+App.swift
 //  PitchPerfect
 //
 //  Created by Shobhit Gupta on 24/03/17.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-enum Constants {
+extension Constant {
     
     enum Recording {
         static let DataContainerDirectory: FileManager.SearchPathDirectory = .documentDirectory
