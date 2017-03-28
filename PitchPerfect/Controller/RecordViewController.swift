@@ -68,14 +68,15 @@ class RecordViewController: UIViewController {
             audioRecorder = BasicAudioRecorder()
             do {
                 try audioRecorder?.record(sender: self)
-            } catch Error_.AudioRecorder.occupied {
-                print(Error_.AudioRecorder.occupied.localizedDescription)
-                return
-            } catch Error_.AudioRecorder.permissionDenied {
-                print(Error_.AudioRecorder.permissionDenied.localizedDescription)
-                return
-            } catch {
+            } catch let error as Error_.Audio.Recorder {
                 print(error.localizedDescription)
+                return
+            } catch let error as Error_.FileManager_ {
+                print(error.localizedDescription)
+                return
+            }
+            catch {
+                print(error.info())
                 return
             }
         }
@@ -127,7 +128,7 @@ extension RecordViewController {
             
         case let .notRecording(didFinishRecording, file):
             if didFinishRecording {
-                waveform.end() { (finished) in
+                waveform.end { (finished) in
                     self.microphoneButton.kind = .microphone(blendMode: .normal)
                     if let file = file {
                         self.performSegue(withIdentifier: Constant.Segue.ShowAudioEffects, sender: file)

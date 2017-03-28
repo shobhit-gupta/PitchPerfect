@@ -15,9 +15,28 @@ public enum Error_ {
 
 // Add/Remove or Comment/Uncomment nested enums according to which piece of code you reuse.
 public extension Error_ {
-
+    
     enum Audio {
-
+        
     }
+    
+}
 
+
+extension Error {
+    func info() -> String {
+        let description: String
+        let objectDescription = String(describing: self)
+        let localizedDescription = self.localizedDescription
+        
+        if localizedDescription == ""  || objectDescription.contains(localizedDescription) {
+            description = objectDescription
+        } else if localizedDescription.contains(objectDescription) {
+            description = localizedDescription
+        } else {
+            description = objectDescription + ": " + localizedDescription
+        }
+        
+        return description
+    }
 }

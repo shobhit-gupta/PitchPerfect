@@ -86,7 +86,7 @@ public extension Error_ {
         
         var localizedDescription: String {
             // TODO: See if this error is being caught or not.
-            var description = "FileManager Error: "
+            var description = String(describing: self)
             switch self {
             case let .pathNotFound(directory, domain):
                 description += "Path not found for \(directory) in \(domain)"
