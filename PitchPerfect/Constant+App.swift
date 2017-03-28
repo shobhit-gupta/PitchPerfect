@@ -12,14 +12,6 @@ import UIKit
 
 extension Constant {
     
-    enum Recording {
-        static let DataContainerDirectory: FileManager.SearchPathDirectory = .documentDirectory
-        static let DomainMask: FileManager.SearchPathDomainMask = .userDomainMask
-        static let Folder = "Recordings"
-        static let FileExtension = "wav"
-        
-    }
-    
     enum StatusBarStyle {
         static let RecordViewController: UIStatusBarStyle = .lightContent
         static let AudioEffectsViewController: UIStatusBarStyle = .lightContent

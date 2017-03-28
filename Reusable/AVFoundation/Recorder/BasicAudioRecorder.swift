@@ -20,11 +20,15 @@ class BasicAudioRecorder: NSObject {
         try prepareSession()
         try prepareForRecording(sender: sender)
         
-        session!.requestRecordPermission() { (granted) in
+        session!.requestRecordPermission { (granted) in
             if granted {
                 if let audioRecorder = self.audioRecorder {
                     audioRecorder.record()
-                    sender.audioRecorderDidBeginRecording(audioRecorder)
+                    if let delegate = audioRecorder.delegate as? ExtendedAVAudioRecorderDelegate {
+                        DispatchQueue.main.async {
+                            delegate.audioRecorderDidBeginRecording(audioRecorder)
+                        }
+                    }
                 }
             }
         }
@@ -43,31 +47,31 @@ class BasicAudioRecorder: NSObject {
         do {
             try session.setActive(false)
         } catch {
-            debugPrint("BasicAudioRecorder: Failed to make the session inactive.")
+            print(error.info())
             return
         }
     }
     
     
-    internal func prepareSession() throws {
+    private func prepareSession() throws {
         if session == nil {
             session = AVAudioSession.sharedInstance()
         }
         try session?.setCategory(AVAudioSessionCategoryPlayAndRecord)
         guard session?.recordPermission() != .denied else {
-            throw Error_.AudioRecorder.permissionDenied
+            throw Error_.Audio.Recorder.permissionDenied
         }
     }
     
     
-    internal func prepareForRecording(sender: ExtendedAVAudioRecorderDelegate) throws {
+    private func prepareForRecording(sender: ExtendedAVAudioRecorderDelegate) throws {
         guard audioRecorder == nil || !audioRecorder!.isRecording else {
-            throw Error_.AudioRecorder.occupied
+            throw Error_.Audio.Recorder.occupied
         }
-        let recordingURL = try FileManager.default.createPathForFile(withExtension: Constant.Recording.FileExtension,
-                                                                     relativeTo: Constant.Recording.DataContainerDirectory,
-                                                                     at: Constant.Recording.Folder,
-                                                                     domainMask: Constant.Recording.DomainMask)
+        let recordingURL = try FileManager.default.createPathForFile(withExtension: Constant.Audio.Recording.FileExtension,
+                                                                     relativeTo: Constant.Audio.Recording.DataContainerDirectory,
+                                                                     at: Constant.Audio.Recording.Folder,
+                                                                     domainMask: Constant.Audio.Recording.DomainMask)
         audioRecorder = try AVAudioRecorder(url: recordingURL, settings: [:])
         audioRecorder!.delegate = sender
         audioRecorder!.isMeteringEnabled = true
@@ -77,15 +81,26 @@ class BasicAudioRecorder: NSObject {
 }
 
 
-
-extension Error_ {
+public extension Constant.Audio {
     
-    enum AudioRecorder: Error {
+    enum Recording {
+        static let DataContainerDirectory: FileManager.SearchPathDirectory = .documentDirectory
+        static let DomainMask: FileManager.SearchPathDomainMask = .userDomainMask
+        static let Folder = "Recordings"
+        static let FileExtension = "wav"
+    }
+    
+}
+
+
+public extension Error_.Audio {
+    
+    enum Recorder: Error {
         case occupied
         case permissionDenied
         
         var localizedDescription: String {
-            var description = "BasicAudioRecorder Error: "
+            var description = String(describing: self)
             switch self {
             case .occupied:
                 description += "Cannot initiate a new recording while a previous recording is in progress."

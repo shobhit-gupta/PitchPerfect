@@ -24,4 +24,8 @@ public extension Constant {
         
     }
     
+    enum Audio {
+        
+    }
+    
 }
