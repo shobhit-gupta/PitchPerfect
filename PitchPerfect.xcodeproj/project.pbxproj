@@ -19,7 +19,6 @@
 		EE5D05051E843A2700373C9F /* UIView+Fadeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05041E843A2700373C9F /* UIView+Fadeable.swift */; };
 		EE5D05071E850C7700373C9F /* Constant+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05061E850C7700373C9F /* Constant+App.swift */; };
 		EE5D05091E850DEA00373C9F /* AudioEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05081E850DEA00373C9F /* AudioEffect.swift */; };
-		EE5D050E1E856CDD00373C9F /* AudioManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D050D1E856CDD00373C9F /* AudioManipulator.swift */; };
 		EE5D05101E856FBD00373C9F /* FileManager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D050F1E856FBD00373C9F /* FileManager+Convenience.swift */; };
 		EE5D05121E86E99800373C9F /* Error_.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05111E86E99800373C9F /* Error_.swift */; };
 		EE5D05141E86EF6000373C9F /* Error_+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05131E86EF6000373C9F /* Error_+App.swift */; };
@@ -75,7 +74,6 @@
 		EE5D05041E843A2700373C9F /* UIView+Fadeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Fadeable.swift"; path = "Reusable/UIView+Fadeable.swift"; sourceTree = "<group>"; };
 		EE5D05061E850C7700373C9F /* Constant+App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Constant+App.swift"; sourceTree = "<group>"; };
 		EE5D05081E850DEA00373C9F /* AudioEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioEffect.swift; path = Model/AudioEffect.swift; sourceTree = "<group>"; };
-		EE5D050D1E856CDD00373C9F /* AudioManipulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioManipulator.swift; path = Model/AudioManipulator.swift; sourceTree = "<group>"; };
 		EE5D050F1E856FBD00373C9F /* FileManager+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FileManager+Convenience.swift"; path = "Reusable/FileManager+Convenience.swift"; sourceTree = "<group>"; };
 		EE5D05111E86E99800373C9F /* Error_.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error_.swift; path = Reusable/MustImport/Error_.swift; sourceTree = "<group>"; };
 		EE5D05131E86EF6000373C9F /* Error_+App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error_+App.swift"; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				EE5D05081E850DEA00373C9F /* AudioEffect.swift */,
-				EE5D050D1E856CDD00373C9F /* AudioManipulator.swift */,
 			);
 			name = "Model ";
 			sourceTree = "<group>";
@@ -598,7 +595,6 @@
 				EED9E9E21E88CC530096EF0E /* BasicAudioRecorder.swift in Sources */,
 				EECA498D1E821C2A00B5198D /* CustomTraitCollectionViewController.swift in Sources */,
 				EE3D3F0A1E82BE6500BCB8A2 /* CircularSliderGradient.swift in Sources */,
-				EE5D050E1E856CDD00373C9F /* AudioManipulator.swift in Sources */,
 				EED3169F1E801B6A00014B2D /* RecordViewController.swift in Sources */,
 				EED9E9E41E892E9E0096EF0E /* AVAudioEngine+Convenience.swift in Sources */,
 				EE4545191E87C29300B9C213 /* ExtendedAVAudioRecorderDelegate.swift in Sources */,

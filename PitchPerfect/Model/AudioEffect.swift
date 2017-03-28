@@ -8,11 +8,17 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 
 enum AudioEffect: Int {
     
     case high = 1, fast, reverb, low, slow, echo
+    
+}
+
+
+extension AudioEffect {
     
     func image() -> UIImage {
         return AudioEffect.image(for: self)
@@ -47,4 +53,29 @@ enum AudioEffect: Int {
         return image
     }
     
+}
+
+
+extension AudioEffect {
+    
+    // TODO: Fine tune this while testing after adding the slider measure
+    func audioProperties() -> [AudioProperty] {
+        let properties: [AudioProperty]
+        switch self {
+        case .high:
+            properties = [.pitch(pitch: 1000.0), .rate(rate: 1.0)]
+        case .fast:
+            properties = [.rate(rate: 1.5), .pitch(pitch: 1.0)]
+        case .reverb:
+            properties = [.reverb(preset: .cathedral), .rate(rate: 1.0), .pitch(pitch: 1.0)]
+        case .low:
+            properties = [.pitch(pitch: -1000.0), .rate(rate: 1.0)]
+        case .slow:
+            properties = [.rate(rate: 0.5), .pitch(pitch: 1.0)]
+        case .echo:
+            properties = [.distortion(preset: .multiEcho1), .rate(rate: 1.0), .pitch(pitch: 1.0)]
+        }
+        
+        return properties
+    }
 }

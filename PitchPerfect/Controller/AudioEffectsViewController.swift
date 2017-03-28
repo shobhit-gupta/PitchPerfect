@@ -25,18 +25,8 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
 
     
     // MARK: Private variables and types
-    fileprivate enum State {
-        case playing
-        case notPlaying
-    }
-
-    fileprivate var currentState: State = .notPlaying {
-        didSet {
-            updateUI()
-        }
-    }
-    
     fileprivate var currentEffect: AudioEffect?
+    fileprivate var audioPlayer = BasicAudioPlayer()
     
     
     // MARK: ViewController Methods
@@ -60,6 +50,21 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
             navigationController.popViewController(animated: true)
         } else {
             dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    
+    func play() {
+        if let currentEffect = currentEffect {
+            do {
+                try audioPlayer.play(recording, with: currentEffect.audioProperties())
+            } catch let error as Error_.Audio.Property {
+                print(error.localizedDescription)
+                return
+            } catch {
+                print(error.info())
+                return
+            }
         }
     }
     
@@ -131,16 +136,6 @@ extension AudioEffectsViewController {
         circularSliderGradient.sync(with: circularSlider)
     }
     
-    
-    func updateUI() {
-        switch currentState {
-        case .playing:
-            break
-        case .notPlaying:
-            break
-        }
-    }
-    
 }
 
 
@@ -150,10 +145,21 @@ extension AudioEffectsViewController {
 extension AudioEffectsViewController: RotaryProtocol {
     
     func wheelDidChangeValue(_ currentSector: Int32) {
-        currentEffect = AudioEffect(rawValue: Int(currentSector))
-        // TODO: Apply audio effects
+        // HCRotaryWheel returns currentSector value starting from 0.
+        // AudioEffect enum starts from the value of 1.
+        // Why does AudioEffect enum start from 1? 
+        // Because, HCRotary wheel names the rotaryImages from 1, i.e.
+        // rotartImage1, rotaryImage2 and so on... See setupWheel() method.
+        currentEffect = AudioEffect(rawValue: Int(currentSector + 1))
+        play()
     }
     
 }
 
+/*
+ -> .notPlaying(shouldPlay = false)
+ -> On user action: If .playing: stop then start If .notPlaying start
+ 
+ 
+ */
 
