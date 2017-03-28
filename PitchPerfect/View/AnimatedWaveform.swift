@@ -45,7 +45,7 @@ class AnimatedWaveform: SwiftSiriWaveformView {
     }
     
     
-    internal func refreshAudioView(_:Timer) {
+    func refreshAudioView(_:Timer) {
         if self.amplitude <= self.idleAmplitude || self.amplitude > 1.0 {
             self.change *= -1.0
         }

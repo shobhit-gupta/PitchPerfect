@@ -47,7 +47,7 @@ class RotaryWheel: HCRotaryWheel {
     // HCRotaryWheel doesn't adapt to changing superview sizes
     func redraw() {
         // Remove existing drawing or rather subviews in this case
-        subviews.forEach() {
+        subviews.forEach {
             $0.removeFromSuperview()
         }
         
