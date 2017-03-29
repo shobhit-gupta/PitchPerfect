@@ -48,7 +48,7 @@ class RecordViewController: UIViewController {
             if let audioEffectsVC = segue.destination as? AudioEffectsViewController {
                 audioEffectsVC.recording = sender as! URL
             } else {
-                print("RecordViewController: Check segue identifier: \(segue.identifier)")
+                print("RecordViewController: Check segue identifier: \(String(describing: segue.identifier))")
             }
         }
     }
