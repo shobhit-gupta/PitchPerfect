@@ -25,8 +25,16 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
 
     
     // MARK: Private variables and types
-    fileprivate var currentEffect: AudioEffect?
     fileprivate var audioPlayer = BasicAudioPlayer()
+    
+    fileprivate var currentEffect: AudioEffect? {
+        // HCRotaryWheel returns currentSector value starting from 0.
+        // AudioEffect enum starts from the value of 1.
+        // Why does AudioEffect enum start from 1?
+        // Because, HCRotary wheel names the rotaryImages from 1, i.e.
+        // rotartImage1, rotaryImage2 and so on... See setupWheel() method.
+        return AudioEffect(rawValue: Int(wheel.currentSector + 1))
+    }
     
     fileprivate var factor: Int {
         return Int(circularSlider.endPointValue)
@@ -158,12 +166,6 @@ extension AudioEffectsViewController {
 extension AudioEffectsViewController: RotaryProtocol {
     
     func wheelDidChangeValue(_ currentSector: Int32) {
-        // HCRotaryWheel returns currentSector value starting from 0.
-        // AudioEffect enum starts from the value of 1.
-        // Why does AudioEffect enum start from 1? 
-        // Because, HCRotary wheel names the rotaryImages from 1, i.e.
-        // rotartImage1, rotaryImage2 and so on... See setupWheel() method.
-        currentEffect = AudioEffect(rawValue: Int(currentSector + 1))
         play()
     }
     

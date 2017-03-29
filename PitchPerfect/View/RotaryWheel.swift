@@ -58,5 +58,4 @@ class RotaryWheel: HCRotaryWheel {
         setNeedsDisplay()
     }
     
-    
 }
