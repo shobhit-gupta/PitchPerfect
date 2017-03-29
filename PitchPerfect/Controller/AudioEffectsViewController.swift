@@ -28,6 +28,10 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
     fileprivate var currentEffect: AudioEffect?
     fileprivate var audioPlayer = BasicAudioPlayer()
     
+    fileprivate var factor: Int {
+        return Int(circularSlider.endPointValue)
+    }
+    
     
     // MARK: ViewController Methods
     override func viewDidLoad() {
@@ -56,8 +60,9 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
     
     func play() {
         if let currentEffect = currentEffect {
+            print("Factor: \(factor)")
             do {
-                try audioPlayer.play(recording, with: currentEffect.audioProperties())
+                try audioPlayer.play(recording, with: currentEffect.audioProperties(scaledBy: factor))
             } catch let error as Error_.Audio.Property {
                 print(error.localizedDescription)
                 return
@@ -129,6 +134,14 @@ extension AudioEffectsViewController {
         circularSlider.endThumbTintColor = ArtKit.secondaryColor
         circularSlider.endThumbStrokeColor = ArtKit.secondaryColor
         circularSlider.endThumbStrokeHighlightedColor = ArtKit.secondaryColor
+        
+        // Values
+        circularSlider.minimumValue = CGFloat(Constant.Audio.Effect.Factor.Minimum)
+        circularSlider.maximumValue = CGFloat(Constant.Audio.Effect.Factor.Maximum)
+        circularSlider.endPointValue = CGFloat(Constant.Audio.Effect.Factor.Default)
+        
+        //circularSlider.addTarget(self, action: #selector(sliderDidChange), for: .valueChanged)
+        circularSlider.addTarget(self, action: #selector(sliderDoneEditing), for: .editingDidEnd)
     }
     
     
@@ -156,10 +169,16 @@ extension AudioEffectsViewController: RotaryProtocol {
     
 }
 
-/*
- -> .notPlaying(shouldPlay = false)
- -> On user action: If .playing: stop then start If .notPlaying start
- 
- 
- */
 
+//******************************************************************************
+//                              MARK: Circular Slider
+//******************************************************************************
+extension AudioEffectsViewController {
+    
+    func sliderDoneEditing() {
+        let value = round(circularSlider.endPointValue)
+        circularSlider.endPointValue = value
+        play()
+    }
+    
+}

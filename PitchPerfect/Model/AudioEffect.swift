@@ -59,21 +59,36 @@ extension AudioEffect {
 extension AudioEffect {
     
     // TODO: Fine tune this while testing after adding the slider measure
-    func audioProperties() -> [AudioProperty] {
+    func audioProperties(scaledBy factor: Int = Constant.Audio.Effect.Factor.Default) -> [AudioProperty] {
+        
+        guard case Constant.Audio.Effect.Factor.Minimum...Constant.Audio.Effect.Factor.Maximum = factor else {
+            return Constant.Audio.Default.Properties()
+        }
+        
+        // Normalize
+        let factor = Float(factor) - Float(Constant.Audio.Effect.Factor.Minimum)
+        let range = Float(Constant.Audio.Effect.Factor.Maximum - Constant.Audio.Effect.Factor.Minimum)
+        
+        // This condition can be served in above guard statement but, it's 
+        // not an appropriate place for it.
+        if factor == 0.0 {
+            return Constant.Audio.Default.Properties()
+        }
+        
         let properties: [AudioProperty]
         switch self {
         case .high:
-            properties = [.pitch(pitch: 1000.0), .rate(rate: 1.0)]
+            properties = [.pitch(value: 2000.0 * factor / range), .rate(value: 1.0)]
         case .fast:
-            properties = [.rate(rate: 1.5), .pitch(pitch: 1.0)]
+            properties = [.rate(value: 1.0 + factor / range), .pitch(value: 1.0)]
         case .reverb:
-            properties = [.reverb(preset: .cathedral), .rate(rate: 1.0), .pitch(pitch: 1.0)]
+            properties = [.reverb(preset: .cathedral), .rate(value: 1.0), .pitch(value: 1.0)]
         case .low:
-            properties = [.pitch(pitch: -1000.0), .rate(rate: 1.0)]
+            properties = [.pitch(value: -2000.0 * factor / range), .rate(value: 1.0)]
         case .slow:
-            properties = [.rate(rate: 0.5), .pitch(pitch: 1.0)]
+            properties = [.rate(value: 1.0 - factor / (1.5 * range)), .pitch(value: 1.0)]
         case .echo:
-            properties = [.distortion(preset: .multiEcho1), .rate(rate: 1.0), .pitch(pitch: 1.0)]
+            properties = [.distortion(preset: .multiEcho1), .rate(value: 1.0), .pitch(value: 1.0)]
         }
         
         return properties

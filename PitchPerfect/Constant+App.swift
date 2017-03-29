@@ -39,3 +39,14 @@ extension Constant {
     }
     
 }
+
+
+extension Constant.Audio {
+    enum Effect {
+        enum Factor {
+            static let Minimum = 0
+            static let Maximum = 12
+            static let Default = 6
+        }
+    }
+}

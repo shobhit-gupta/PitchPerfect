@@ -12,8 +12,8 @@ import AVFoundation
 
 public enum AudioProperty {
     
-    case rate(rate: Float)
-    case pitch(pitch: Float)
+    case rate(value: Float)
+    case pitch(value: Float)
     case distortion(preset: AVAudioUnitDistortionPreset)
     case reverb(preset: AVAudioUnitReverbPreset)
     
@@ -46,6 +46,24 @@ public enum AudioProperty {
         }
     }
     
+}
+
+
+public extension Constant.Audio.Default {
+    
+    static func Properties() -> [AudioProperty] {
+        var property = [AudioProperty]()
+        property.append(.rate(value: Rate))
+        property.append(.pitch(value: Pitch))
+        if hasDistortion {
+            property.append(.distortion(preset: Distortion))
+        }
+        if hasReverb {
+            property.append(.reverb(preset: Reverb))
+        }
+        return property
+    }
+
 }
 
 

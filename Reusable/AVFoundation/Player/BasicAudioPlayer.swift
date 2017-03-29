@@ -129,18 +129,6 @@ class BasicAudioPlayer: NSObject {
 }
 
 
-public extension Constant.Audio {
-    
-    enum Default {
-        static let Pitch: Float = 1.0
-        static let Rate: Float = 1.0
-        static let hasDistortion = false
-        static let hasReverb = false
-    }
-    
-}
-
-
 
 
 
