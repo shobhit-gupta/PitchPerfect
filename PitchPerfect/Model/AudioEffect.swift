@@ -75,20 +75,33 @@ extension AudioEffect {
             return Constant.Audio.Default.Properties()
         }
         
+        // Increasing functions of factor. Adding their negative in an 
+        // expression will make the whole expression a decreasing function.
+        let maxUnityIncreasingFraction = factor / range
+        let lessThanUnityIncreasingFraction = factor / (1 + range)
+        let muchLessThanUnityIncreasingFraction = factor / (1.5 * range)
+        
         let properties: [AudioProperty]
         switch self {
+            
         case .high:
-            properties = [.pitch(value: 2000.0 * factor / range), .rate(value: 1.0)]
+            properties = [.pitch(value: 2000.0 * maxUnityIncreasingFraction), .rate(value: 1.0 + 0.05 * maxUnityIncreasingFraction)]
+            
         case .fast:
-            properties = [.rate(value: 1.0 + factor / range), .pitch(value: 1.0)]
+            properties = [.rate(value: 1.0 + maxUnityIncreasingFraction), .pitch(value: 1.0)]
+            
         case .reverb:
-            properties = [.reverb(preset: .cathedral), .rate(value: 1.0), .pitch(value: 1.0)]
+            let presets: [AVAudioUnitReverbPreset] = [.smallRoom, .mediumRoom, .largeRoom, .largeRoom2, .mediumHall, .mediumHall2, .mediumHall3, .largeChamber, .largeHall, .largeHall2, .cathedral, .plate]
+            properties = [.reverb(preset: presets[Int(Float(presets.count) * lessThanUnityIncreasingFraction)], wetDryMix: 50 + 20 * maxUnityIncreasingFraction), .rate(value: 1.0), .pitch(value: -50.0 + 100 * maxUnityIncreasingFraction)]
+            
         case .low:
-            properties = [.pitch(value: -2000.0 * factor / range), .rate(value: 1.0)]
+            properties = [.pitch(value: -2000.0 * maxUnityIncreasingFraction), .rate(value: 1.0 - 0.05 * maxUnityIncreasingFraction)]
+            
         case .slow:
-            properties = [.rate(value: 1.0 - factor / (1.5 * range)), .pitch(value: 1.0)]
+            properties = [.rate(value: 1.0 - muchLessThanUnityIncreasingFraction), .pitch(value: 1.0)]
+            
         case .echo:
-            properties = [.distortion(preset: .multiEcho1), .rate(value: 1.0), .pitch(value: 1.0)]
+            properties = [.distortion(preset: .multiEcho2, preGain: -10 + 20 * maxUnityIncreasingFraction, wetDryMix: 20 + 50 * maxUnityIncreasingFraction), .rate(value: 1.0 - 0.25 * maxUnityIncreasingFraction), .pitch(value: 1.0)]
         }
         
         return properties

@@ -14,8 +14,8 @@ public enum AudioProperty {
     
     case rate(value: Float)
     case pitch(value: Float)
-    case distortion(preset: AVAudioUnitDistortionPreset)
-    case reverb(preset: AVAudioUnitReverbPreset)
+    case distortion(preset: AVAudioUnitDistortionPreset, preGain: Float?, wetDryMix: Float?)
+    case reverb(preset: AVAudioUnitReverbPreset, wetDryMix: Float?)
     
     func configure(audioNode: AVAudioNode) throws {
         switch self {
@@ -31,17 +31,26 @@ public enum AudioProperty {
             }
             node.pitch = pitch
             
-        case .reverb(let preset):
+        case let .reverb(preset, wetDryMix):
             guard let node = audioNode as? AVAudioUnitReverb else {
                 throw Error_.Audio.Property.Incompatible(property: self, with: audioNode)
             }
             node.loadFactoryPreset(preset)
+            if let wetDryMix = wetDryMix {
+                node.wetDryMix = wetDryMix
+            }
             
-        case .distortion(let preset):
+        case let .distortion(preset, preGain, wetDryMix):
             guard let node = audioNode as? AVAudioUnitDistortion else {
                 throw Error_.Audio.Property.Incompatible(property: self, with: audioNode)
             }
             node.loadFactoryPreset(preset)
+            if let preGain = preGain {
+                node.preGain = preGain
+            }
+            if let wetDryMix = wetDryMix {
+                node.wetDryMix = wetDryMix
+            }
             
         }
     }
@@ -55,11 +64,11 @@ public extension Constant.Audio.Default {
         var property = [AudioProperty]()
         property.append(.rate(value: Rate))
         property.append(.pitch(value: Pitch))
-        if hasDistortion {
-            property.append(.distortion(preset: Distortion))
+        if Distortion.Exist {
+            property.append(.distortion(preset: Distortion.Preset, preGain: Distortion.PreGain, wetDryMix: Distortion.WetDryMix))
         }
-        if hasReverb {
-            property.append(.reverb(preset: Reverb))
+        if Reverb.Exist {
+            property.append(.reverb(preset: Reverb.Preset, wetDryMix: Reverb.WetDryMix))
         }
         return property
     }

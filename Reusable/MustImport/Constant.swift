@@ -40,10 +40,20 @@ public extension Constant.Audio {
         enum Default {
             static let Rate: Float = 1.0
             static let Pitch: Float = 1.0
-            static let Distortion: AVAudioUnitDistortionPreset = .multiEcho1
-            static let Reverb: AVAudioUnitReverbPreset = .cathedral
-            static let hasDistortion = false
-            static let hasReverb = false
+            
+            enum Distortion {
+                static let Exist: Bool = false
+                static let Preset: AVAudioUnitDistortionPreset = .multiEcho1
+                static let PreGain: Float? = nil
+                static let WetDryMix: Float? = nil
+            }
+            
+            enum Reverb {
+                static let Exist: Bool = false
+                static let Preset: AVAudioUnitReverbPreset = .cathedral
+                static let WetDryMix: Float? = 50.0
+            }
+            
         }
         
 }

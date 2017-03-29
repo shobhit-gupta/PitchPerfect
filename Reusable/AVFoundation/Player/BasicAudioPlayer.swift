@@ -37,8 +37,8 @@ class BasicAudioPlayer: NSObject {
         pitchAndRateNode = AVAudioUnitTimePitch()
         distortionNode = AVAudioUnitDistortion()
         reverbNode = AVAudioUnitReverb()
-        hasDistortion = Constant.Audio.Default.hasDistortion
-        hasReverb = Constant.Audio.Default.hasReverb
+        hasDistortion = Constant.Audio.Default.Distortion.Exist
+        hasReverb = Constant.Audio.Default.Reverb.Exist
         super.init()
         
         // Attach audio nodes to engine
@@ -84,8 +84,8 @@ class BasicAudioPlayer: NSObject {
         stop()
         pitchAndRateNode.rate = Constant.Audio.Default.Rate
         pitchAndRateNode.pitch = Constant.Audio.Default.Pitch
-        hasDistortion = Constant.Audio.Default.hasDistortion
-        hasReverb = Constant.Audio.Default.hasReverb
+        hasDistortion = Constant.Audio.Default.Distortion.Exist
+        hasReverb = Constant.Audio.Default.Reverb.Exist
         audioEngine.disconnectInput(of: nodes)
     }
     
