@@ -1,5 +1,5 @@
 //
-//  Constants.swift
+//  Constant+App.swift
 //  PitchPerfect
 //
 //  Created by Shobhit Gupta on 24/03/17.
@@ -10,15 +10,7 @@ import Foundation
 import UIKit
 
 
-enum Constants {
-    
-    enum Recording {
-        static let DataContainerDirectory: FileManager.SearchPathDirectory = .documentDirectory
-        static let DomainMask: FileManager.SearchPathDomainMask = .userDomainMask
-        static let Folder = "Recordings"
-        static let FileExtension = "wav"
-        
-    }
+extension Constant {
     
     enum StatusBarStyle {
         static let RecordViewController: UIStatusBarStyle = .lightContent
@@ -42,4 +34,19 @@ enum Constants {
         static let DefaultSector = 0
     }
     
+    enum Segue {
+        static let ShowAudioEffects = "showAudioEffects"
+    }
+    
+}
+
+
+extension Constant.Audio {
+    enum Effect {
+        enum Factor {
+            static let Minimum = 0
+            static let Maximum = 12
+            static let Default = 6
+        }
+    }
 }

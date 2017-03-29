@@ -13,16 +13,15 @@
 		EE158BAE1E80233C00228BA2 /* AudioEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE158BAD1E80233C00228BA2 /* AudioEffectsViewController.swift */; };
 		EE3D3F081E82469F00BCB8A2 /* RotaryWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D3F071E82469F00BCB8A2 /* RotaryWheel.swift */; };
 		EE3D3F0A1E82BE6500BCB8A2 /* CircularSliderGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D3F091E82BE6500BCB8A2 /* CircularSliderGradient.swift */; };
-		EE4545151E877DC500B9C213 /* ReusableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4545141E877DC500B9C213 /* ReusableConstants.swift */; };
+		EE4545151E877DC500B9C213 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4545141E877DC500B9C213 /* Constant.swift */; };
 		EE4545191E87C29300B9C213 /* ExtendedAVAudioRecorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4545181E87C29300B9C213 /* ExtendedAVAudioRecorderDelegate.swift */; };
 		EE5CF1F61E8400B800292217 /* AnimatedWaveform.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5CF1F51E8400B800292217 /* AnimatedWaveform.swift */; };
 		EE5D05051E843A2700373C9F /* UIView+Fadeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05041E843A2700373C9F /* UIView+Fadeable.swift */; };
-		EE5D05071E850C7700373C9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05061E850C7700373C9F /* Constants.swift */; };
+		EE5D05071E850C7700373C9F /* Constant+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05061E850C7700373C9F /* Constant+App.swift */; };
 		EE5D05091E850DEA00373C9F /* AudioEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05081E850DEA00373C9F /* AudioEffect.swift */; };
-		EE5D050E1E856CDD00373C9F /* AudioManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D050D1E856CDD00373C9F /* AudioManipulator.swift */; };
 		EE5D05101E856FBD00373C9F /* FileManager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D050F1E856FBD00373C9F /* FileManager+Convenience.swift */; };
-		EE5D05121E86E99800373C9F /* ReusableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05111E86E99800373C9F /* ReusableError.swift */; };
-		EE5D05141E86EF6000373C9F /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05131E86EF6000373C9F /* AppError.swift */; };
+		EE5D05121E86E99800373C9F /* Error_.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05111E86E99800373C9F /* Error_.swift */; };
+		EE5D05141E86EF6000373C9F /* Error_+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D05131E86EF6000373C9F /* Error_+App.swift */; };
 		EE894A481E5C98A10066A4FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A471E5C98A10066A4FE /* AppDelegate.swift */; };
 		EE894A4D1E5C98A10066A4FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE894A4B1E5C98A10066A4FE /* Main.storyboard */; };
 		EE894A4F1E5C98A10066A4FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE894A4E1E5C98A10066A4FE /* Assets.xcassets */; };
@@ -33,6 +32,10 @@
 		EED3169B1E7FA56D00014B2D /* ArtKitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169A1E7FA56D00014B2D /* ArtKitButton.swift */; };
 		EED3169D1E80110000014B2D /* ArtKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169C1E80110000014B2D /* ArtKit.swift */; };
 		EED3169F1E801B6A00014B2D /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169E1E801B6A00014B2D /* RecordViewController.swift */; };
+		EED9E9D91E880DA20096EF0E /* AudioProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED9E9D81E880DA20096EF0E /* AudioProperty.swift */; };
+		EED9E9E01E88B8420096EF0E /* BasicAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED9E9DF1E88B8420096EF0E /* BasicAudioPlayer.swift */; };
+		EED9E9E21E88CC530096EF0E /* BasicAudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED9E9E11E88CC530096EF0E /* BasicAudioRecorder.swift */; };
+		EED9E9E41E892E9E0096EF0E /* AVAudioEngine+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED9E9E31E892E9E0096EF0E /* AVAudioEngine+Convenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,16 +68,15 @@
 		EE158BAD1E80233C00228BA2 /* AudioEffectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioEffectsViewController.swift; path = Controller/AudioEffectsViewController.swift; sourceTree = "<group>"; };
 		EE3D3F071E82469F00BCB8A2 /* RotaryWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RotaryWheel.swift; path = View/RotaryWheel.swift; sourceTree = "<group>"; };
 		EE3D3F091E82BE6500BCB8A2 /* CircularSliderGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularSliderGradient.swift; path = View/CircularSliderGradient.swift; sourceTree = "<group>"; };
-		EE4545141E877DC500B9C213 /* ReusableConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReusableConstants.swift; path = Reusable/MustImport/ReusableConstants.swift; sourceTree = "<group>"; };
-		EE4545181E87C29300B9C213 /* ExtendedAVAudioRecorderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedAVAudioRecorderDelegate.swift; path = Controller/ExtendedAVAudioRecorderDelegate.swift; sourceTree = "<group>"; };
+		EE4545141E877DC500B9C213 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = Reusable/MustImport/Constant.swift; sourceTree = "<group>"; };
+		EE4545181E87C29300B9C213 /* ExtendedAVAudioRecorderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedAVAudioRecorderDelegate.swift; path = Reusable/AVFoundation/Recorder/ExtendedAVAudioRecorderDelegate.swift; sourceTree = "<group>"; };
 		EE5CF1F51E8400B800292217 /* AnimatedWaveform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedWaveform.swift; path = View/AnimatedWaveform.swift; sourceTree = "<group>"; };
 		EE5D05041E843A2700373C9F /* UIView+Fadeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Fadeable.swift"; path = "Reusable/UIView+Fadeable.swift"; sourceTree = "<group>"; };
-		EE5D05061E850C7700373C9F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EE5D05061E850C7700373C9F /* Constant+App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Constant+App.swift"; sourceTree = "<group>"; };
 		EE5D05081E850DEA00373C9F /* AudioEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioEffect.swift; path = Model/AudioEffect.swift; sourceTree = "<group>"; };
-		EE5D050D1E856CDD00373C9F /* AudioManipulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioManipulator.swift; path = Model/AudioManipulator.swift; sourceTree = "<group>"; };
 		EE5D050F1E856FBD00373C9F /* FileManager+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FileManager+Convenience.swift"; path = "Reusable/FileManager+Convenience.swift"; sourceTree = "<group>"; };
-		EE5D05111E86E99800373C9F /* ReusableError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReusableError.swift; path = Reusable/ReusableError.swift; sourceTree = "<group>"; };
-		EE5D05131E86EF6000373C9F /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		EE5D05111E86E99800373C9F /* Error_.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error_.swift; path = Reusable/MustImport/Error_.swift; sourceTree = "<group>"; };
+		EE5D05131E86EF6000373C9F /* Error_+App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error_+App.swift"; sourceTree = "<group>"; };
 		EE894A441E5C98A10066A4FE /* PitchPerfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PitchPerfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE894A471E5C98A10066A4FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE894A4C1E5C98A10066A4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,6 +93,10 @@
 		EED3169A1E7FA56D00014B2D /* ArtKitButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtKitButton.swift; path = View/ArtKitButton.swift; sourceTree = "<group>"; };
 		EED3169C1E80110000014B2D /* ArtKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtKit.swift; path = View/ArtKit.swift; sourceTree = "<group>"; };
 		EED3169E1E801B6A00014B2D /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordViewController.swift; path = Controller/RecordViewController.swift; sourceTree = "<group>"; };
+		EED9E9D81E880DA20096EF0E /* AudioProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioProperty.swift; path = Reusable/AVFoundation/AudioProperty.swift; sourceTree = "<group>"; };
+		EED9E9DF1E88B8420096EF0E /* BasicAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicAudioPlayer.swift; path = Reusable/AVFoundation/Player/BasicAudioPlayer.swift; sourceTree = "<group>"; };
+		EED9E9E11E88CC530096EF0E /* BasicAudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicAudioRecorder.swift; path = Reusable/AVFoundation/Recorder/BasicAudioRecorder.swift; sourceTree = "<group>"; };
+		EED9E9E31E892E9E0096EF0E /* AVAudioEngine+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AVAudioEngine+Convenience.swift"; path = "Reusable/AVFoundation/Player/AVAudioEngine+Convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +153,8 @@
 		EE4545131E877D2800B9C213 /* MustImport */ = {
 			isa = PBXGroup;
 			children = (
-				EE4545141E877DC500B9C213 /* ReusableConstants.swift */,
-				EE5D05111E86E99800373C9F /* ReusableError.swift */,
+				EE4545141E877DC500B9C213 /* Constant.swift */,
+				EE5D05111E86E99800373C9F /* Error_.swift */,
 			);
 			name = MustImport;
 			sourceTree = "<group>";
@@ -157,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				EE5D05081E850DEA00373C9F /* AudioEffect.swift */,
-				EE5D050D1E856CDD00373C9F /* AudioManipulator.swift */,
 			);
 			name = "Model ";
 			sourceTree = "<group>";
@@ -188,8 +193,8 @@
 		EE894A461E5C98A10066A4FE /* PitchPerfect */ = {
 			isa = PBXGroup;
 			children = (
-				EE5D05131E86EF6000373C9F /* AppError.swift */,
-				EE5D05061E850C7700373C9F /* Constants.swift */,
+				EE5D05131E86EF6000373C9F /* Error_+App.swift */,
+				EE5D05061E850C7700373C9F /* Constant+App.swift */,
 				EE5D050A1E850E0800373C9F /* Model  */,
 				EED316991E7FA50D00014B2D /* View */,
 				EED316A01E801B7400014B2D /* Controller */,
@@ -221,6 +226,7 @@
 		EECA498E1E821C2F00B5198D /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
+				EED9E9DC1E88A8960096EF0E /* AVFoundation */,
 				EECA498C1E821C2A00B5198D /* CustomTraitCollectionViewController.swift */,
 				EE5D05041E843A2700373C9F /* UIView+Fadeable.swift */,
 				EE5D050F1E856FBD00373C9F /* FileManager+Convenience.swift */,
@@ -244,7 +250,6 @@
 		EED316A01E801B7400014B2D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EE4545181E87C29300B9C213 /* ExtendedAVAudioRecorderDelegate.swift */,
 				EED3169E1E801B6A00014B2D /* RecordViewController.swift */,
 				EE158BAD1E80233C00228BA2 /* AudioEffectsViewController.swift */,
 			);
@@ -259,6 +264,34 @@
 				EE894A501E5C98A10066A4FE /* LaunchScreen.storyboard */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		EED9E9DC1E88A8960096EF0E /* AVFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				EED9E9D81E880DA20096EF0E /* AudioProperty.swift */,
+				EED9E9E51E89328B0096EF0E /* Recorder */,
+				EED9E9E61E89329F0096EF0E /* Player */,
+			);
+			name = AVFoundation;
+			sourceTree = "<group>";
+		};
+		EED9E9E51E89328B0096EF0E /* Recorder */ = {
+			isa = PBXGroup;
+			children = (
+				EE4545181E87C29300B9C213 /* ExtendedAVAudioRecorderDelegate.swift */,
+				EED9E9E11E88CC530096EF0E /* BasicAudioRecorder.swift */,
+			);
+			name = Recorder;
+			sourceTree = "<group>";
+		};
+		EED9E9E61E89329F0096EF0E /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				EED9E9E31E892E9E0096EF0E /* AVAudioEngine+Convenience.swift */,
+				EED9E9DF1E88B8420096EF0E /* BasicAudioPlayer.swift */,
+			);
+			name = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -545,22 +578,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE4545151E877DC500B9C213 /* Constant.swift in Sources */,
+				EE5D05121E86E99800373C9F /* Error_.swift in Sources */,
 				EED3169D1E80110000014B2D /* ArtKit.swift in Sources */,
-				EE5D05071E850C7700373C9F /* Constants.swift in Sources */,
-				EE5D05121E86E99800373C9F /* ReusableError.swift in Sources */,
+				EE5D05071E850C7700373C9F /* Constant+App.swift in Sources */,
 				EED3169B1E7FA56D00014B2D /* ArtKitButton.swift in Sources */,
-				EE5D05141E86EF6000373C9F /* AppError.swift in Sources */,
-				EE4545151E877DC500B9C213 /* ReusableConstants.swift in Sources */,
+				EED9E9E01E88B8420096EF0E /* BasicAudioPlayer.swift in Sources */,
+				EE5D05141E86EF6000373C9F /* Error_+App.swift in Sources */,
 				EE5D05101E856FBD00373C9F /* FileManager+Convenience.swift in Sources */,
+				EED9E9D91E880DA20096EF0E /* AudioProperty.swift in Sources */,
 				EE5D05091E850DEA00373C9F /* AudioEffect.swift in Sources */,
 				EE5D05051E843A2700373C9F /* UIView+Fadeable.swift in Sources */,
 				EE894A481E5C98A10066A4FE /* AppDelegate.swift in Sources */,
 				EE5CF1F61E8400B800292217 /* AnimatedWaveform.swift in Sources */,
 				EE158BAE1E80233C00228BA2 /* AudioEffectsViewController.swift in Sources */,
+				EED9E9E21E88CC530096EF0E /* BasicAudioRecorder.swift in Sources */,
 				EECA498D1E821C2A00B5198D /* CustomTraitCollectionViewController.swift in Sources */,
 				EE3D3F0A1E82BE6500BCB8A2 /* CircularSliderGradient.swift in Sources */,
-				EE5D050E1E856CDD00373C9F /* AudioManipulator.swift in Sources */,
 				EED3169F1E801B6A00014B2D /* RecordViewController.swift in Sources */,
+				EED9E9E41E892E9E0096EF0E /* AVAudioEngine+Convenience.swift in Sources */,
 				EE4545191E87C29300B9C213 /* ExtendedAVAudioRecorderDelegate.swift in Sources */,
 				EE3D3F081E82469F00BCB8A2 /* RotaryWheel.swift in Sources */,
 			);

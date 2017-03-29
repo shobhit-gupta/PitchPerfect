@@ -11,20 +11,26 @@ import AVFoundation
 
 class RecordViewController: UIViewController {
     
-    enum State {
-        case recording
-        case notRecording(didFinishRecording: Bool)
-    }
-    
+    // MARK: IBOutlets
     @IBOutlet weak var microphoneButton: ArtKitButton!
     @IBOutlet weak var waveform: AnimatedWaveform!
     
-    var currentState: State = .notRecording(didFinishRecording: false) {
+    // MARK: Private variables and types
+    fileprivate enum State {
+        case recording
+        case notRecording(didFinishRecording: Bool, file: URL?)
+    }
+    
+    fileprivate var currentState: State = .notRecording(didFinishRecording: false, file: nil) {
         didSet {
             updateUI()
         }
     }
     
+    fileprivate var audioRecorder: BasicAudioRecorder?
+    
+    
+    // MARK: ViewController Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -35,42 +41,42 @@ class RecordViewController: UIViewController {
         setupWaveform()
         waveform.setNeedsDisplay()
     }
-
     
-    func updateUI() {
-        
-        switch currentState {
-        case .recording:
-            waveform.begin()
-            microphoneButton.kind = .microphone(blendMode: .overlay)
-        
-        case .notRecording(let didFinishRecording):
-            waveform.end() { (finished) in
-                self.microphoneButton.kind = .microphone(blendMode: .normal)
-                if didFinishRecording {
-                    self.performSegue(withIdentifier: "showAudioEffects", sender: self)
-                }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constant.Segue.ShowAudioEffects {
+            if let audioEffectsVC = segue.destination as? AudioEffectsViewController {
+                audioEffectsVC.recording = sender as! URL
+            } else {
+                print("RecordViewController: Check segue identifier: \(String(describing: segue.identifier))")
             }
         }
     }
     
     
+    // MARK: IBActions
     @IBAction func pressed(_ sender: ArtKitButton) {
         switch currentState {
         case .recording:
-            AudioManipulator.shared.stopRecording()
+            if let audioRecorder = audioRecorder {
+                audioRecorder.stop()
+            } else {
+                print("RecordViewController Warning: audioRecorder not found in recording state!")
+            }
  
         case .notRecording:
+            audioRecorder = BasicAudioRecorder()
             do {
-                try AudioManipulator.shared.recordAudio(sender: self)
-            } catch AppError.AudioManipulator.recorderOccupied {
-                print(AppError.AudioManipulator.recorderOccupied.localizedDescription)
-                return
-            } catch AppError.AudioManipulator.recordPermissionDenied {
-                print(AppError.AudioManipulator.recordPermissionDenied.localizedDescription)
-                return
-            } catch {
+                try audioRecorder?.record(sender: self)
+            } catch let error as Error_.Audio.Recorder {
                 print(error.localizedDescription)
+                return
+            } catch let error as Error_.FileManager_ {
+                print(error.localizedDescription)
+                return
+            }
+            catch {
+                print(error.info())
                 return
             }
         }
@@ -79,13 +85,13 @@ class RecordViewController: UIViewController {
 }
 
 
-/*******************************************************************************
-                                Initial Setup
- ******************************************************************************/
+//******************************************************************************
+//                              MARK: User Interface
+//******************************************************************************
 extension RecordViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Constants.StatusBarStyle.RecordViewController
+        return Constant.StatusBarStyle.RecordViewController
     }
     
     
@@ -113,21 +119,45 @@ extension RecordViewController {
         waveform.shouldHideWhenNotAnimating = true
     }
     
+    
+    func updateUI() {
+        switch currentState {
+        case .recording:
+            waveform.begin()
+            microphoneButton.kind = .microphone(blendMode: .overlay)
+            
+        case let .notRecording(didFinishRecording, file):
+            if didFinishRecording {
+                waveform.end { (finished) in
+                    self.microphoneButton.kind = .microphone(blendMode: .normal)
+                    if let file = file {
+                        self.performSegue(withIdentifier: Constant.Segue.ShowAudioEffects, sender: file)
+                    }
+                }
+            }
+            audioRecorder = nil
+        }
+    }
+    
 }
 
 
+//******************************************************************************
+//                     MARK: ExtendedAVAudioRecorderDelegate
+//******************************************************************************
 extension RecordViewController: ExtendedAVAudioRecorderDelegate {
     
     func audioRecorderDidBeginRecording(_ recorder: AVAudioRecorder) {
         currentState = .recording
     }
     
+    
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
-            currentState = .notRecording(didFinishRecording: true)
-            debugPrint("RecordViewController: Recording successful: \(recorder.url)")
+            currentState = .notRecording(didFinishRecording: true, file: recorder.url)
+//            debugPrint("RecordViewController: Recording successful: \(recorder.url)")
         } else {
-            currentState = .notRecording(didFinishRecording: false)
+            currentState = .notRecording(didFinishRecording: true, file: nil)
             debugPrint("RecordViewController: Recording failed")
         }
     }

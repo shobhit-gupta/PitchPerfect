@@ -13,25 +13,35 @@ import HGCircularSlider
 
 class AudioEffectsViewController: CustomTraitCollectionViewController {
     
-    enum State {
-        case playing
-        case notPlaying
-    }
-
+    // MARK: IBOutlets
     @IBOutlet weak var wheel: RotaryWheel!
     @IBOutlet weak var closeButton: ArtKitButton!
     @IBOutlet weak var circularSliderGradient: CircularSliderGradient!
     @IBOutlet weak var circularSlider: CircularSlider!
     
-    var currentState: State = .notPlaying {
-        didSet {
-            updateUI()
-        }
+    
+    // MARK: Public variables and types
+    public var recording: URL!
+
+    
+    // MARK: Private variables and types
+    fileprivate var audioPlayer = BasicAudioPlayer()
+    
+    fileprivate var currentEffect: AudioEffect? {
+        // HCRotaryWheel returns currentSector value starting from 0.
+        // AudioEffect enum starts from the value of 1.
+        // Why does AudioEffect enum start from 1?
+        // Because, HCRotary wheel names the rotaryImages from 1, i.e.
+        // rotartImage1, rotaryImage2 and so on... See setupWheel() method.
+        return AudioEffect(rawValue: Int(wheel.currentSector + 1))
     }
     
-    var currentEffect: AudioEffect?
+    fileprivate var factor: Int {
+        return Int(circularSlider.endPointValue)
+    }
     
     
+    // MARK: ViewController Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -44,18 +54,9 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
         circularSliderGradient.sync(with: circularSlider)
         circularSliderGradient.setNeedsDisplay()
     }
-    
-    
-    func updateUI() {
-        switch currentState {
-        case .playing:
-            break
-        case .notPlaying:
-            break
-        }
-    }
 
     
+    // MARK: IBActions
     @IBAction func close(_ sender: ArtKitButton) {
         if let navigationController = navigationController {
             navigationController.popViewController(animated: true)
@@ -64,23 +65,32 @@ class AudioEffectsViewController: CustomTraitCollectionViewController {
         }
     }
     
-}
-
-
-extension AudioEffectsViewController: RotaryProtocol {
     
-    func wheelDidChangeValue(_ currentSector: Int32) {
-        currentEffect = AudioEffect(rawValue: Int(currentSector))
-        // TODO: Apply audio effects
+    func play() {
+        if let currentEffect = currentEffect {
+            print("Factor: \(factor)")
+            do {
+                try audioPlayer.play(recording, with: currentEffect.audioProperties(scaledBy: factor))
+            } catch let error as Error_.Audio.Property {
+                print(error.localizedDescription)
+                return
+            } catch {
+                print(error.info())
+                return
+            }
+        }
     }
     
 }
 
 
+//******************************************************************************
+//                              MARK: User Interface
+//******************************************************************************
 extension AudioEffectsViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Constants.StatusBarStyle.AudioEffectsViewController
+        return Constant.StatusBarStyle.AudioEffectsViewController
     }
     
     
@@ -124,19 +134,53 @@ extension AudioEffectsViewController {
         // Track
         circularSlider.trackColor = ArtKit.shadowOfPrimaryColor
         circularSlider.trackFillColor = ArtKit.highlightOfPrimaryColor
-        circularSlider.lineWidth = Constants.CircularSlider.LineWidth
+        circularSlider.lineWidth = Constant.CircularSlider.LineWidth
         
         // Thumb
-        circularSlider.thumbLineWidth = Constants.CircularSlider.ThumbLineWidth
-        circularSlider.thumbRadius = Constants.CircularSlider.ThumbRadius
+        circularSlider.thumbLineWidth = Constant.CircularSlider.ThumbLineWidth
+        circularSlider.thumbRadius = Constant.CircularSlider.ThumbRadius
         circularSlider.endThumbTintColor = ArtKit.secondaryColor
         circularSlider.endThumbStrokeColor = ArtKit.secondaryColor
         circularSlider.endThumbStrokeHighlightedColor = ArtKit.secondaryColor
+        
+        // Values
+        circularSlider.minimumValue = CGFloat(Constant.Audio.Effect.Factor.Minimum)
+        circularSlider.maximumValue = CGFloat(Constant.Audio.Effect.Factor.Maximum)
+        circularSlider.endPointValue = CGFloat(Constant.Audio.Effect.Factor.Default)
+        
+        //circularSlider.addTarget(self, action: #selector(sliderDidChange), for: .valueChanged)
+        circularSlider.addTarget(self, action: #selector(sliderDoneEditing), for: .editingDidEnd)
     }
     
     
     func setupCircularSliderGradient() {
         circularSliderGradient.sync(with: circularSlider)
+    }
+    
+}
+
+
+//******************************************************************************
+//                              MARK: RotaryProtocol
+//******************************************************************************
+extension AudioEffectsViewController: RotaryProtocol {
+    
+    func wheelDidChangeValue(_ currentSector: Int32) {
+        play()
+    }
+    
+}
+
+
+//******************************************************************************
+//                              MARK: Circular Slider
+//******************************************************************************
+extension AudioEffectsViewController {
+    
+    func sliderDoneEditing() {
+        let value = round(circularSlider.endPointValue)
+        circularSlider.endPointValue = value
+        play()
     }
     
 }

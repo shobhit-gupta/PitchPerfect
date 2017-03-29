@@ -26,16 +26,16 @@ open class CustomTraitCollectionViewController: UIViewController {
             let collections: [UITraitCollection]
             
             if view.bounds.width > view.bounds.height {
-                collections = [UITraitCollection(horizontalSizeClass: ReusableConstants.SizeClass.Pad.GreaterWidth.Horizontal),
-                               UITraitCollection(verticalSizeClass: ReusableConstants.SizeClass.Pad.GreaterWidth.Vertical)]
+                collections = [UITraitCollection(horizontalSizeClass: Constant.SizeClass.Pad.GreaterWidth.Horizontal),
+                               UITraitCollection(verticalSizeClass: Constant.SizeClass.Pad.GreaterWidth.Vertical)]
             
             } else if view.bounds.height > view.bounds.width {
-                collections = [UITraitCollection(horizontalSizeClass: ReusableConstants.SizeClass.Pad.GreaterHeight.Horizontal),
-                               UITraitCollection(verticalSizeClass: ReusableConstants.SizeClass.Pad.GreaterHeight.Vertical)]
+                collections = [UITraitCollection(horizontalSizeClass: Constant.SizeClass.Pad.GreaterHeight.Horizontal),
+                               UITraitCollection(verticalSizeClass: Constant.SizeClass.Pad.GreaterHeight.Vertical)]
             
             } else {
-                collections = [UITraitCollection(horizontalSizeClass: ReusableConstants.SizeClass.Pad.EqualWidthAndHeight.Horizontal),
-                               UITraitCollection(verticalSizeClass: ReusableConstants.SizeClass.Pad.EqualWidthAndHeight.Vertical)]
+                collections = [UITraitCollection(horizontalSizeClass: Constant.SizeClass.Pad.EqualWidthAndHeight.Horizontal),
+                               UITraitCollection(verticalSizeClass: Constant.SizeClass.Pad.EqualWidthAndHeight.Vertical)]
             }
             
             return UITraitCollection(traitsFrom: collections)
@@ -49,7 +49,7 @@ open class CustomTraitCollectionViewController: UIViewController {
 }
 
 
-public extension ReusableConstants {
+public extension Constant {
     
     enum SizeClass {
         

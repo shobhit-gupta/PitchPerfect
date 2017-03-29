@@ -22,9 +22,9 @@ public extension FileManager {
     
     public func createPathForFile(_ name: String? = nil,
                                   withExtension fileExtension: String? = nil,
-                                  relativeTo directory: SearchPathDirectory = ReusableConstants.FileManager.DafaultSearchPathDirectory,
+                                  relativeTo directory: SearchPathDirectory = Constant.FileManager_.SearchPath.Directory,
                                   at subPath: String?,
-                                  domainMask: SearchPathDomainMask = ReusableConstants.FileManager.DefaultSearchPathDomainMask) throws -> URL {
+                                  domainMask: SearchPathDomainMask = Constant.FileManager_.SearchPath.DomainMask) throws -> URL {
         
         // Get a path to folder that will contain the file
         let folderURL = try createPathForFolder(at: subPath, relativeTo: directory, domainMask: domainMask)
@@ -46,11 +46,11 @@ public extension FileManager {
     
     
     public func createPathForFolder(at subPath: String?,
-                                      relativeTo directory: SearchPathDirectory = ReusableConstants.FileManager.DafaultSearchPathDirectory,
-                                      domainMask: SearchPathDomainMask = ReusableConstants.FileManager.DefaultSearchPathDomainMask) throws -> URL {
+                                      relativeTo directory: SearchPathDirectory = Constant.FileManager_.SearchPath.Directory,
+                                      domainMask: SearchPathDomainMask = Constant.FileManager_.SearchPath.DomainMask) throws -> URL {
         
         guard let pathForDirectory = NSSearchPathForDirectoriesInDomains(directory, domainMask, true).first else {
-            throw ReusableError.FileManager.pathNotFound(forDirectory: directory, inDomain: domainMask)
+            throw Error_.FileManager_.pathNotFound(forDirectory: directory, inDomain: domainMask)
         }
         
         // Create folder path
@@ -68,24 +68,25 @@ public extension FileManager {
 }
 
 
-public extension ReusableConstants {
+public extension Constant.FileManager_ {
     
-    enum FileManager {
-        static let DafaultSearchPathDirectory: Foundation.FileManager.SearchPathDirectory = .documentDirectory
-        static let DefaultSearchPathDomainMask: Foundation.FileManager.SearchPathDomainMask = .userDomainMask
+    enum SearchPath {
+        static let Directory: FileManager.SearchPathDirectory = .documentDirectory
+        static let DomainMask: FileManager.SearchPathDomainMask = .userDomainMask
     }
     
 }
 
 
 
-public extension ReusableError {
+public extension Error_ {
     
-    enum FileManager: Error {
-        case pathNotFound(forDirectory: Foundation.FileManager.SearchPathDirectory, inDomain: Foundation.FileManager.SearchPathDomainMask)
+    enum FileManager_: Error {
+        case pathNotFound(forDirectory: FileManager.SearchPathDirectory, inDomain: FileManager.SearchPathDomainMask)
         
         var localizedDescription: String {
-            var description = "FileManager Error: "
+            // TODO: See if this error is being caught or not.
+            var description = String(describing: self)
             switch self {
             case let .pathNotFound(directory, domain):
                 description += "Path not found for \(directory) in \(domain)"
