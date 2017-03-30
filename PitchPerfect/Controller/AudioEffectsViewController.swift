@@ -166,7 +166,9 @@ extension AudioEffectsViewController {
 extension AudioEffectsViewController: RotaryProtocol {
     
     func wheelDidChangeValue(_ currentSector: Int32) {
-        play()
+        if wheel.isUserInitiated {
+            play()
+        }
     }
     
 }
