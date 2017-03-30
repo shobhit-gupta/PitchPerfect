@@ -58,7 +58,7 @@ class BasicAudioPlayer: NSObject {
     
     
     public func play(_ audioFile: AVAudioFile, with properties: [AudioProperty]) throws {
-        prepareForFreshPlayback()
+        try prepareForFreshPlayback()
         try syncNodes(with: properties)
         connectNodes(format: audioFile.processingFormat)
         prepareForPlaying(audioFile: audioFile)
@@ -77,20 +77,27 @@ class BasicAudioPlayer: NSObject {
             audioEngine.stop()
             audioEngine.reset()
         }
+        
+        breakSession()
     }
     
+}
+
+
+extension BasicAudioPlayer {
     
-    fileprivate func prepareForFreshPlayback() {
+    fileprivate func prepareForFreshPlayback() throws {
         stop()
         pitchAndRateNode.rate = Constant.Audio.Default.Rate
         pitchAndRateNode.pitch = Constant.Audio.Default.Pitch
         hasDistortion = Constant.Audio.Default.Distortion.Exist
         hasReverb = Constant.Audio.Default.Reverb.Exist
         audioEngine.disconnectInput(of: nodes)
+        try prepareSession(for: AVAudioSessionCategoryPlayback)
     }
     
     
-    private func syncNodes(with properties: [AudioProperty]) throws {
+    fileprivate func syncNodes(with properties: [AudioProperty]) throws {
         for property in properties {
             switch property {
             case .rate:
@@ -108,7 +115,7 @@ class BasicAudioPlayer: NSObject {
     }
     
     
-    private func prepareForPlaying(audioFile: AVAudioFile) {
+    fileprivate func prepareForPlaying(audioFile: AVAudioFile) {
         audioPlayerNode.scheduleFile(audioFile, at: nil, completionHandler: nil)
     }
     
@@ -125,6 +132,33 @@ class BasicAudioPlayer: NSObject {
             audioEngine.connect(audioNodes: audioPlayerNode, pitchAndRateNode, audioEngine.outputNode, format: format)
         }
     }
+    
+}
+
+
+extension BasicAudioPlayer: BasicAudioModelProtocol {
+    
+    func subscribeToAVAudioSessionNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(visible2ObjC(_:)), name: .AVAudioSessionInterruption, object: nil)
+    }
+    
+    // Just a wrapper that is visible to objective C.
+    func visible2ObjC(_ notification: Notification) {
+        interruption(notification)
+    }
+    
+    
+    func unSubscribeFromAVAudioSessionNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .AVAudioSessionInterruption, object: nil)
+    }
+    
+    
+    func interruptionBegan() {
+        stop()
+    }
+    
+    
+    func interruptionEnded() {}
     
 }
 

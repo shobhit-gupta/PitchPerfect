@@ -13,14 +13,18 @@ import AVFoundation
 class BasicAudioRecorder: NSObject {
     
     fileprivate var audioRecorder: AVAudioRecorder?
-    fileprivate var session: AVAudioSession?
-
+    
+    
+    deinit {
+        stop()
+    }
+    
     
     public func record(sender: ExtendedAVAudioRecorderDelegate) throws {
-        try prepareSession()
+        try prepareSession(for: AVAudioSessionCategoryPlayAndRecord)
         try prepareForRecording(sender: sender)
         
-        session!.requestRecordPermission { (granted) in
+        session.requestRecordPermission { (granted) in
             if granted {
                 if let audioRecorder = self.audioRecorder {
                     audioRecorder.record()
@@ -30,6 +34,8 @@ class BasicAudioRecorder: NSObject {
                         }
                     }
                 }
+            } else {
+                self.breakSession()
             }
         }
         
@@ -37,30 +43,11 @@ class BasicAudioRecorder: NSObject {
     
     
     public func stop() {
-        guard let audioRecorder = audioRecorder, audioRecorder.isRecording else {
-            print("BasicAudioRecorder: Trying to stop a recording when no recording is in progress.")
-            return
+        if let audioRecorder = audioRecorder, audioRecorder.isRecording {
+            audioRecorder.stop()
         }
         
-        audioRecorder.stop()
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setActive(false)
-        } catch {
-            print(error.info())
-            return
-        }
-    }
-    
-    
-    private func prepareSession() throws {
-        if session == nil {
-            session = AVAudioSession.sharedInstance()
-        }
-        try session?.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        guard session?.recordPermission() != .denied else {
-            throw Error_.Audio.Recorder.permissionDenied
-        }
+        breakSession()
     }
     
     
@@ -77,6 +64,33 @@ class BasicAudioRecorder: NSObject {
         audioRecorder!.isMeteringEnabled = true
         audioRecorder!.prepareToRecord()
     }
+    
+}
+
+
+extension BasicAudioRecorder: BasicAudioModelProtocol {
+    
+    func subscribeToAVAudioSessionNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(visible2ObjC(_:)), name: .AVAudioSessionInterruption, object: nil)
+    }
+    
+    // Just a wrapper that is visible to objective C.
+    func visible2ObjC(_ notification: Notification) {
+        interruption(notification)
+    }
+    
+    
+    func unSubscribeFromAVAudioSessionNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .AVAudioSessionInterruption, object: nil)
+    }
+    
+    
+    func interruptionBegan() {
+        stop()
+    }
+    
+    
+    func interruptionEnded() {}
     
 }
 

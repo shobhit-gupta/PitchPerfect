@@ -16,6 +16,11 @@ class RotaryWheel: HCRotaryWheel {
     var shouldUseTimer = false
     var rotateToSector: Int = Constant.Wheel.DefaultSector
     
+    // HCRotaryWheel & it's control offers no interface to distinguish between
+    // user initiated tracking based rotation and rotation due to some other 
+    // reasons (like timers etc.)
+    var isUserInitiated = true
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
@@ -24,7 +29,9 @@ class RotaryWheel: HCRotaryWheel {
         if !shouldUseTimer {
             removeTimer()
         }
+        isUserInitiated = false
         rotate(to: rotateToSector)
+        isUserInitiated = true
     }
     
     
