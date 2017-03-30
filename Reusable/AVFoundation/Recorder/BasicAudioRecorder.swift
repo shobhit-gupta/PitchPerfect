@@ -13,8 +13,7 @@ import AVFoundation
 class BasicAudioRecorder: NSObject {
     
     fileprivate var audioRecorder: AVAudioRecorder?
-    fileprivate var session: AVAudioSession?
-
+    
     
     deinit {
         stop()
@@ -22,10 +21,10 @@ class BasicAudioRecorder: NSObject {
     
     
     public func record(sender: ExtendedAVAudioRecorderDelegate) throws {
-        try prepareSession()
+        try prepareSession(for: AVAudioSessionCategoryPlayAndRecord)
         try prepareForRecording(sender: sender)
         
-        session!.requestRecordPermission { (granted) in
+        session.requestRecordPermission { (granted) in
             if granted {
                 if let audioRecorder = self.audioRecorder {
                     audioRecorder.record()
@@ -52,18 +51,6 @@ class BasicAudioRecorder: NSObject {
     }
     
     
-    private func prepareSession() throws {
-        if session == nil {
-            session = AVAudioSession.sharedInstance()
-        }
-        try session!.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        try session!.setActive(true)
-        guard session!.recordPermission() != .denied else {
-            throw Error_.Audio.Recorder.permissionDenied
-        }
-    }
-    
-    
     private func prepareForRecording(sender: ExtendedAVAudioRecorderDelegate) throws {
         guard audioRecorder == nil || !audioRecorder!.isRecording else {
             throw Error_.Audio.Recorder.occupied
@@ -78,17 +65,32 @@ class BasicAudioRecorder: NSObject {
         audioRecorder!.prepareToRecord()
     }
     
+}
+
+
+extension BasicAudioRecorder: BasicAudioModelProtocol {
     
-    private func breakSession() {
-        if let session = session {
-            do {
-                try session.setActive(false)
-            } catch {
-                print(error.info())
-                return
-            }
-        }
+    func subscribeToAVAudioSessionNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(visible2ObjC(_:)), name: .AVAudioSessionInterruption, object: nil)
     }
+    
+    // Just a wrapper that is visible to objective C.
+    func visible2ObjC(_ notification: Notification) {
+        interruption(notification)
+    }
+    
+    
+    func unSubscribeFromAVAudioSessionNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .AVAudioSessionInterruption, object: nil)
+    }
+    
+    
+    func interruptionBegan() {
+        stop()
+    }
+    
+    
+    func interruptionEnded() {}
     
 }
 

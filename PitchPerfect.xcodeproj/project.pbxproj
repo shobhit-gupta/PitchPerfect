@@ -28,6 +28,7 @@
 		EE894A521E5C98A10066A4FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE894A501E5C98A10066A4FE /* LaunchScreen.storyboard */; };
 		EE894A5D1E5C98A10066A4FE /* PitchPerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A5C1E5C98A10066A4FE /* PitchPerfectTests.swift */; };
 		EE894A681E5C98A10066A4FE /* PitchPerfectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE894A671E5C98A10066A4FE /* PitchPerfectUITests.swift */; };
+		EEACFEF01E8D34EF0029BD64 /* BasicAudioModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEACFEEF1E8D34EF0029BD64 /* BasicAudioModelProtocol.swift */; };
 		EECA498D1E821C2A00B5198D /* CustomTraitCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA498C1E821C2A00B5198D /* CustomTraitCollectionViewController.swift */; };
 		EED3169B1E7FA56D00014B2D /* ArtKitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169A1E7FA56D00014B2D /* ArtKitButton.swift */; };
 		EED3169D1E80110000014B2D /* ArtKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3169C1E80110000014B2D /* ArtKit.swift */; };
@@ -89,6 +90,7 @@
 		EE894A631E5C98A10066A4FE /* PitchPerfectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PitchPerfectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE894A671E5C98A10066A4FE /* PitchPerfectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchPerfectUITests.swift; sourceTree = "<group>"; };
 		EE894A691E5C98A10066A4FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEACFEEF1E8D34EF0029BD64 /* BasicAudioModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicAudioModelProtocol.swift; path = Reusable/AVFoundation/BasicAudioModelProtocol.swift; sourceTree = "<group>"; };
 		EECA498C1E821C2A00B5198D /* CustomTraitCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomTraitCollectionViewController.swift; path = Reusable/CustomTraitCollectionViewController.swift; sourceTree = "<group>"; };
 		EED3169A1E7FA56D00014B2D /* ArtKitButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtKitButton.swift; path = View/ArtKitButton.swift; sourceTree = "<group>"; };
 		EED3169C1E80110000014B2D /* ArtKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtKit.swift; path = View/ArtKit.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				EED9E9D81E880DA20096EF0E /* AudioProperty.swift */,
+				EEACFEEF1E8D34EF0029BD64 /* BasicAudioModelProtocol.swift */,
 				EED9E9E51E89328B0096EF0E /* Recorder */,
 				EED9E9E61E89329F0096EF0E /* Player */,
 			);
@@ -587,6 +590,7 @@
 				EE5D05141E86EF6000373C9F /* Error_+App.swift in Sources */,
 				EE5D05101E856FBD00373C9F /* FileManager+Convenience.swift in Sources */,
 				EED9E9D91E880DA20096EF0E /* AudioProperty.swift in Sources */,
+				EEACFEF01E8D34EF0029BD64 /* BasicAudioModelProtocol.swift in Sources */,
 				EE5D05091E850DEA00373C9F /* AudioEffect.swift in Sources */,
 				EE5D05051E843A2700373C9F /* UIView+Fadeable.swift in Sources */,
 				EE894A481E5C98A10066A4FE /* AppDelegate.swift in Sources */,
