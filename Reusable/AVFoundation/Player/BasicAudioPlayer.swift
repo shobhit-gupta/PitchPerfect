@@ -44,10 +44,12 @@ class BasicAudioPlayer: NSObject {
         
         // Attach audio nodes to engine
         audioEngine.attach(audioNodes: nodes)
+        subscribeToAVAudioSessionNotifications()
     }
     
     
     deinit {
+        unSubscribeFromAVAudioSessionNotifications()
         stop()
     }
     
@@ -113,6 +115,33 @@ class BasicAudioPlayer: NSObject {
             }
         }
     }
+    
+    
+    private func subscribeToAVAudioSessionNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(interruption(_:)), name: .AVAudioSessionInterruption, object: nil)
+    }
+    
+    
+    private func unSubscribeFromAVAudioSessionNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    func interruption(_ notification: Notification) {
+        if notification.name == .AVAudioSessionInterruption,
+            let info = notification.userInfo,
+            let type = info[AVAudioSessionInterruptionTypeKey] as? NSNumber {
+            
+            switch AVAudioSessionInterruptionType(rawValue: type.uintValue)! {
+            case .began:
+                print("BasicAudioPlayer: Interruption began")
+                stop()
+            case .ended:
+                print("BasicAudioPlayer: Interruption ended")
+            }
+        }
+    }
+    
     
     
     private func syncNodes(with properties: [AudioProperty]) throws {
