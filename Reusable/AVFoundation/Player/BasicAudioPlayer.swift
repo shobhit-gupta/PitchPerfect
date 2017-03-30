@@ -17,6 +17,7 @@ class BasicAudioPlayer: NSObject {
     }
     
     
+    fileprivate var session: AVAudioSession?
     fileprivate let audioEngine: AVAudioEngine
     fileprivate let audioPlayerNode: AVAudioPlayerNode
     fileprivate let pitchAndRateNode: AVAudioUnitTimePitch
@@ -58,7 +59,7 @@ class BasicAudioPlayer: NSObject {
     
     
     public func play(_ audioFile: AVAudioFile, with properties: [AudioProperty]) throws {
-        prepareForFreshPlayback()
+        try prepareForFreshPlayback()
         try syncNodes(with: properties)
         connectNodes(format: audioFile.processingFormat)
         prepareForPlaying(audioFile: audioFile)
@@ -77,16 +78,40 @@ class BasicAudioPlayer: NSObject {
             audioEngine.stop()
             audioEngine.reset()
         }
+        
+        breakSession()
     }
     
     
-    fileprivate func prepareForFreshPlayback() {
+    private func prepareForFreshPlayback() throws {
         stop()
         pitchAndRateNode.rate = Constant.Audio.Default.Rate
         pitchAndRateNode.pitch = Constant.Audio.Default.Pitch
         hasDistortion = Constant.Audio.Default.Distortion.Exist
         hasReverb = Constant.Audio.Default.Reverb.Exist
         audioEngine.disconnectInput(of: nodes)
+        try prepareSession()
+    }
+    
+    
+    private func prepareSession() throws {
+        if session == nil {
+            session = AVAudioSession.sharedInstance()
+        }
+        try session!.setCategory(AVAudioSessionCategoryPlayback)
+        try session!.setActive(true)
+    }
+    
+    
+    private func breakSession() {
+        if let session = session {
+            do {
+                try session.setActive(false)
+            } catch {
+                print(error.info())
+                return
+            }
+        }
     }
     
     
@@ -113,7 +138,7 @@ class BasicAudioPlayer: NSObject {
     }
     
     
-    fileprivate func connectNodes(format: AVAudioFormat?) {
+    private func connectNodes(format: AVAudioFormat?) {
         switch (hasDistortion, hasReverb) {
         case (true, true):
             audioEngine.connect(audioNodes: audioPlayerNode, pitchAndRateNode, distortionNode, reverbNode, audioEngine.outputNode, format: format)

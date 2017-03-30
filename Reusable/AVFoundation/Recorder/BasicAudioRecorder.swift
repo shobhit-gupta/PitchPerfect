@@ -16,6 +16,11 @@ class BasicAudioRecorder: NSObject {
     fileprivate var session: AVAudioSession?
 
     
+    deinit {
+        stop()
+    }
+    
+    
     public func record(sender: ExtendedAVAudioRecorderDelegate) throws {
         try prepareSession()
         try prepareForRecording(sender: sender)
@@ -30,6 +35,8 @@ class BasicAudioRecorder: NSObject {
                         }
                     }
                 }
+            } else {
+                self.breakSession()
             }
         }
         
@@ -37,19 +44,11 @@ class BasicAudioRecorder: NSObject {
     
     
     public func stop() {
-        guard let audioRecorder = audioRecorder, audioRecorder.isRecording else {
-            print("BasicAudioRecorder: Trying to stop a recording when no recording is in progress.")
-            return
+        if let audioRecorder = audioRecorder, audioRecorder.isRecording {
+            audioRecorder.stop()
         }
         
-        audioRecorder.stop()
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setActive(false)
-        } catch {
-            print(error.info())
-            return
-        }
+        breakSession()
     }
     
     
@@ -57,8 +56,9 @@ class BasicAudioRecorder: NSObject {
         if session == nil {
             session = AVAudioSession.sharedInstance()
         }
-        try session?.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        guard session?.recordPermission() != .denied else {
+        try session!.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try session!.setActive(true)
+        guard session!.recordPermission() != .denied else {
             throw Error_.Audio.Recorder.permissionDenied
         }
     }
@@ -76,6 +76,18 @@ class BasicAudioRecorder: NSObject {
         audioRecorder!.delegate = sender
         audioRecorder!.isMeteringEnabled = true
         audioRecorder!.prepareToRecord()
+    }
+    
+    
+    private func breakSession() {
+        if let session = session {
+            do {
+                try session.setActive(false)
+            } catch {
+                print(error.info())
+                return
+            }
+        }
     }
     
 }
