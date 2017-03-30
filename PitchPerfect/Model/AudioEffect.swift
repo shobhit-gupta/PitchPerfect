@@ -101,7 +101,7 @@ extension AudioEffect {
             properties = [.rate(value: 1.0 - muchLessThanUnityIncreasingFraction), .pitch(value: 1.0)]
             
         case .echo:
-            properties = [.distortion(preset: .multiEcho2, preGain: -10 + 20 * maxUnityIncreasingFraction, wetDryMix: 20 + 50 * maxUnityIncreasingFraction), .rate(value: 1.0 - 0.25 * maxUnityIncreasingFraction), .pitch(value: 1.0)]
+            properties = [.distortion(preset: .multiEcho2, preGain: -10 + 20 * maxUnityIncreasingFraction, wetDryMix: 20 + 20 * maxUnityIncreasingFraction), .rate(value: 1.0 - 0.15 * maxUnityIncreasingFraction), .pitch(value: 1.0)]
         }
         
         return properties
