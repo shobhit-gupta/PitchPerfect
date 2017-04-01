@@ -60,7 +60,7 @@ public enum AudioProperty {
 
 public extension Constant.Audio.Default {
     
-    static func Properties() -> [AudioProperty] {
+    static var Properties: [AudioProperty] {
         var property = [AudioProperty]()
         property.append(.rate(value: Rate))
         property.append(.pitch(value: Pitch))

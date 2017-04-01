@@ -62,7 +62,7 @@ extension AudioEffect {
     func audioProperties(scaledBy factor: Int = Constant.Audio.Effect.Factor.Default) -> [AudioProperty] {
         
         guard case Constant.Audio.Effect.Factor.Minimum...Constant.Audio.Effect.Factor.Maximum = factor else {
-            return Constant.Audio.Default.Properties()
+            return Constant.Audio.Default.Properties
         }
         
         // Normalize
@@ -72,7 +72,7 @@ extension AudioEffect {
         // This condition can be served in above guard statement but, it's 
         // not an appropriate place for it.
         if factor == 0.0 {
-            return Constant.Audio.Default.Properties()
+            return Constant.Audio.Default.Properties
         }
         
         // Increasing functions of factor. Adding their negative in an 
