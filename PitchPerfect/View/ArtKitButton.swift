@@ -1,5 +1,5 @@
 //
-//  OverlayButton.swift
+//  ArtKitButton.swift
 //  PitchPerfect
 //
 //  Created by Shobhit Gupta on 20/03/17.
