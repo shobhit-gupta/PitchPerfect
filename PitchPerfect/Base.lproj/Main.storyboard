@@ -1,14 +1,37 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qJa-db-EK1">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="82h-k8-OLo">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="qJa-db-EK1" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Afu-zR-kOo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Moq-TD-nKU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lMb-4d-cK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-932" y="-700"/>
+        </scene>
+        <!--Record View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RecordViewController" customModule="PitchPerfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +39,156 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ps8-64-MnZ" userLabel="Root Stack View">
+                                <rect key="frame" x="16" y="239.5" width="343" height="188"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6uf-Cu-Cyq" userLabel="Record Stack View">
+                                        <rect key="frame" x="143" y="0.0" width="57" height="116.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAv-2E-GYe" userLabel="Microphone" customClass="ArtKitButton" customModule="PitchPerfect">
+                                                <rect key="frame" x="0.0" y="0.0" width="57" height="116.5"/>
+                                                <connections>
+                                                    <action selector="pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y7q-h3-18x"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="6uf-Cu-Cyq" secondAttribute="height" multiplier="116:240" id="igH-ky-ICF"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Fjw-r2-In5" userLabel="Waveform Stack View">
+                                        <rect key="frame" x="0.0" y="116.5" width="343" height="71.5"/>
+                                        <subviews>
+                                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9af-9p-tWc" customClass="AnimatedWaveform" customModule="PitchPerfect">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="71.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Fjw-r2-In5" firstAttribute="width" secondItem="ps8-64-MnZ" secondAttribute="width" id="9UX-Dt-cG8"/>
+                                    <constraint firstItem="Fjw-r2-In5" firstAttribute="height" secondItem="6uf-Cu-Cyq" secondAttribute="height" multiplier="0.618" id="UJw-YZ-vRD"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ps8-64-MnZ" secondAttribute="trailing" id="15e-NE-F7D"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ps8-64-MnZ" secondAttribute="leading" id="8kX-zX-xnW"/>
+                            <constraint firstItem="ps8-64-MnZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YX5-Ge-9Pv"/>
+                            <constraint firstItem="JAv-2E-GYe" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.175" id="g4n-1a-wT3"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="jPx-gZ-dAI"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="microphoneButton" destination="JAv-2E-GYe" id="iYu-gG-wYJ"/>
+                        <outlet property="waveform" destination="9af-9p-tWc" id="jcL-Uk-jww"/>
+                        <segue destination="gPy-Yt-lOi" kind="show" identifier="showAudioEffects" id="3Ei-6l-zA7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="31.875" y="-700"/>
+        </scene>
+        <!--Audio Effects View Controller-->
+        <scene sceneID="vRT-PZ-pPO">
+            <objects>
+                <viewController id="gPy-Yt-lOi" customClass="AudioEffectsViewController" customModule="PitchPerfect" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Agg-ZV-Dwr"/>
+                        <viewControllerLayoutGuide type="bottom" id="bqF-Tl-gzr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ehL-tu-WGg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RcP-lg-gAg" userLabel="Main Stack View">
+                                <rect key="frame" x="16" y="28" width="343" height="639"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="F43-Ch-L42" userLabel="Wheel Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="639"/>
+                                        <subviews>
+                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1B-49-pth" customClass="RotaryWheel" customModule="PitchPerfect">
+                                                <rect key="frame" x="0.0" y="148" width="343" height="343"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="j1B-49-pth" secondAttribute="height" multiplier="1:1" id="uv0-bn-gte"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfSections">
+                                                        <integer key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="background">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <variation key="heightClass=compact" alignment="fill"/>
+                                        <variation key="heightClass=regular-widthClass=compact" alignment="center"/>
+                                    </stackView>
+                                </subviews>
+                                <variation key="heightClass=compact" alignment="center"/>
+                                <variation key="heightClass=regular-widthClass=compact" alignment="fill"/>
+                            </stackView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="br6-KH-4UA" customClass="CircularSliderGradient" customModule="PitchPerfect">
+                                <rect key="frame" x="137" y="297" width="102" height="102"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2r6-vN-ZEb" customClass="CircularSlider" customModule="HGCircularSlider">
+                                <rect key="frame" x="137" y="297" width="102" height="102"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2r6-vN-ZEb" secondAttribute="height" multiplier="1:1" id="GGb-67-t6j"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70c-gM-PBt" userLabel="Page Actions Stack View">
+                                <rect key="frame" x="332.5" y="28" width="26.5" height="26.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixZ-Tn-rZm" userLabel="Close" customClass="ArtKitButton" customModule="PitchPerfect">
+                                        <rect key="frame" x="0.0" y="0.0" width="26.5" height="26.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ixZ-Tn-rZm" secondAttribute="height" multiplier="1:1" id="Ny1-bU-Tyg"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="close:" destination="gPy-Yt-lOi" eventType="touchUpInside" id="g6J-vu-v7f"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2r6-vN-ZEb" firstAttribute="centerX" secondItem="j1B-49-pth" secondAttribute="centerX" id="0Zs-Do-J1v"/>
+                            <constraint firstItem="br6-KH-4UA" firstAttribute="top" secondItem="2r6-vN-ZEb" secondAttribute="top" id="CXw-ns-f3T"/>
+                            <constraint firstItem="br6-KH-4UA" firstAttribute="bottom" secondItem="2r6-vN-ZEb" secondAttribute="bottom" id="Ch9-vh-ILc"/>
+                            <constraint firstItem="RcP-lg-gAg" firstAttribute="bottom" secondItem="bqF-Tl-gzr" secondAttribute="top" id="J1B-XH-8hp"/>
+                            <constraint firstItem="br6-KH-4UA" firstAttribute="trailing" secondItem="2r6-vN-ZEb" secondAttribute="trailing" id="PBy-T4-sjL"/>
+                            <constraint firstItem="RcP-lg-gAg" firstAttribute="top" secondItem="Agg-ZV-Dwr" secondAttribute="bottom" constant="8" symbolic="YES" id="Pyw-Ph-wMn"/>
+                            <constraint firstItem="RcP-lg-gAg" firstAttribute="leading" secondItem="ehL-tu-WGg" secondAttribute="leadingMargin" id="Qji-9q-sLz"/>
+                            <constraint firstItem="70c-gM-PBt" firstAttribute="trailing" secondItem="RcP-lg-gAg" secondAttribute="trailing" id="TPN-BS-H7Z"/>
+                            <constraint firstItem="2r6-vN-ZEb" firstAttribute="centerY" secondItem="j1B-49-pth" secondAttribute="centerY" id="UBq-B5-fZT"/>
+                            <constraint firstItem="ixZ-Tn-rZm" firstAttribute="height" secondItem="ehL-tu-WGg" secondAttribute="height" multiplier="0.04" id="ZVc-4z-j2P"/>
+                            <constraint firstItem="70c-gM-PBt" firstAttribute="top" secondItem="RcP-lg-gAg" secondAttribute="top" id="ccZ-Ip-4tH"/>
+                            <constraint firstItem="2r6-vN-ZEb" firstAttribute="width" secondItem="j1B-49-pth" secondAttribute="width" multiplier="0.3" id="l4P-t4-Nht"/>
+                            <constraint firstItem="br6-KH-4UA" firstAttribute="leading" secondItem="2r6-vN-ZEb" secondAttribute="leading" id="pWq-WB-t1o"/>
+                            <constraint firstItem="RcP-lg-gAg" firstAttribute="trailing" secondItem="ehL-tu-WGg" secondAttribute="trailingMargin" id="soO-MZ-uBY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="circularSlider" destination="2r6-vN-ZEb" id="qns-9s-K7d"/>
+                        <outlet property="circularSliderGradient" destination="br6-KH-4UA" id="vhn-bc-iVr"/>
+                        <outlet property="closeButton" destination="ixZ-Tn-rZm" id="DEa-b3-Dt3"/>
+                        <outlet property="wheel" destination="j1B-49-pth" id="Iid-ee-gJm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fvz-RA-miK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="964" y="-700"/>
         </scene>
     </scenes>
 </document>
