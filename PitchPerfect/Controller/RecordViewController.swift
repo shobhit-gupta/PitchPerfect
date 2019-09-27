@@ -38,6 +38,7 @@ class RecordViewController: UIViewController {
     
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setupWaveform()
         waveform.setNeedsDisplay()
     }
